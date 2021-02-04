@@ -15,8 +15,8 @@
     "url": "https://github.com/Ces0715/projet5/issues"
   },
   "homepage": "https://github.com/Ces0715/projet5#readme",
-  "description": "",
   "dependencies": {
     "bootstrap": "^4.6.0"
-  }
+  },
+  "description": ""
 }
