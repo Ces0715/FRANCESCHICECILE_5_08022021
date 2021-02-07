@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "node-sass": "sass ./node_modules/bootstrap/scss/style.scss:./PUBLIC/css/style.css --watch --style compressed"
   },
   "repository": {
     "type": "git",
@@ -18,5 +18,6 @@
   "dependencies": {
     "bootstrap": "^4.6.0"
   },
+  "devDependencies": {},
   "description": ""
 }

@@ -52,6 +52,7 @@ html {
  footer, header, hgroup, main, nav {
   display: block;
   background-color: pink;
+  height: 80px;
 }
 
 body {
@@ -366,6 +367,7 @@ h1, .h1 {
 
 h2, .h2 {
   font-size: 2rem;
+  color: #000;
 }
 
 h3, .h3 {
