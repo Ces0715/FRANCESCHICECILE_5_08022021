@@ -1,7 +1,7 @@
 #footer {
   display: flex;
   justify-content: space-between;
-  background-color:$header-bg;
+  background-color:pink;
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -14,7 +14,7 @@
      }
 
      & .mentions a {
-    color: $purple;
+    color: purple;
     font-weight: bold;
     text-decoration: none;
   }
@@ -25,13 +25,13 @@
     font-size: 20px;
   }
     & .mentions a {
-      color: $purple;
+      color: purple;
       font-weight: bold;
       text-decoration: none;
     }
 
   & .contact a {
-    color: $purple;
+    color: purple;
     font-weight: bold;
     text-decoration: none;
   }

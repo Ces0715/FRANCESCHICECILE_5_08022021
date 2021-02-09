@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "node-sass": "sass ./PUBLIC/node_modules/bootstrap/scss/style.scss:./PUBLIC/css/style.css --watch --style compressed"
+    "node-sass": "sass ./PUBLIC/scss/style.scss:./PUBLIC/css/style.css --watch --style compressed"
   },
   "repository": {
     "type": "git",
