@@ -3,7 +3,7 @@ body {
 }
 
 section {
-    height: 2000px;
+    height: 2500px;
     margin-top: 40px;
 }
 
@@ -57,4 +57,38 @@ article {
     & .text {
         margin-left: 20px;
     }
+}
+.row{
+    margin-left: 100px;
+    margin-right: 100px;
+   
+    box-shadow: 1px 1px 12px purple;
+    height:250px ;
+}
+
+.col-md-4 themed-grid-col img{
+    box-shadow: 1px 1px 12px purple;
+    height: 100px;
+    
+    margin-top: 20px;
+    border-radius: 50px;
+    margin-left: 20px;
+}
+
+img {
+    box-shadow: 1px 1px 12px purple;
+    height: 200px;
+    
+    margin-top: 20px;
+    border-radius: 50px;
+    margin-left: 20px;
+}
+
+h2 {
+    margin-top: 50px;
+    margin-right: 50px;
+    color: purple;
+    text-align: center;
+    font-size: 30px;
+    
 }
