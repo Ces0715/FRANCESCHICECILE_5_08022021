@@ -3,7 +3,7 @@ body {
 }
 
 section {
-    height: 2500px;
+    height: 1600px;
     margin-top: 40px;
 }
 
@@ -15,73 +15,28 @@ section {
 h1 {
     text-align: center;
     color: purple;
-    margin-top: 50px;
-    margin-bottom: 80px;
+    margin-bottom: 50px;
     font-size: 25px;
 }
 
-#teddies {
-    margin-left: 80px;
-    margin-right: 80px;
-   
-}
 
-article {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    margin-bottom: 50px;
-    margin-top: 20px;
-    height: 250px;
-    box-shadow: 1px 1px 12px purple;
-  
-
-    & h2 {
-        margin-top: 130px;
-        margin-right: 50px;
-        color: purple;
-        text-align: center;
-        font-size: 30px;
-        
-    }
-
-    & img {
-        box-shadow: 1px 1px 12px purple;
-        height: 200px;
-        
-        margin-top: 20px;
-        border-radius: 50px;
-        margin-left: 20px;
-    }
-
-    & .text {
-        margin-left: 20px;
-    }
-}
 .row{
     margin-left: 100px;
-    margin-right: 100px;
-   
+    margin-right: 100px;  
     box-shadow: 1px 1px 12px purple;
-    height:250px ;
+  
 }
 
-.col-md-4 themed-grid-col img{
+.col-md-6 img{
     box-shadow: 1px 1px 12px purple;
-    height: 100px;
-    
+    height: 200px; 
     margin-top: 20px;
     border-radius: 50px;
-    margin-left: 20px;
+    margin-left: 50px;
 }
 
-img {
-    box-shadow: 1px 1px 12px purple;
-    height: 200px;
-    
-    margin-top: 20px;
-    border-radius: 50px;
-    margin-left: 20px;
+.col-md-6{
+    width:500px;
 }
 
 h2 {
