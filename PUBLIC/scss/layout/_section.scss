@@ -5,10 +5,10 @@ body {
 section {
     height: 1600px;
     margin-top: 40px;
-    font-family:'Finger Paint', cursive;
+    font-family: "Finger Paint", cursive;
 }
 
-.container{
+.container {
     padding-left: 0;
     padding-right: 0;
 }
@@ -18,31 +18,28 @@ h1 {
     color: purple;
     margin-bottom: 50px;
     font-size: 25px;
-    font-family: 'Finger Paint', cursive;
+    font-family: "Finger Paint", cursive;
 }
 
-
-.row{
+.row {
     margin-left: 50px;
-    
-    margin-right: 50px;  
-    height: 250px;
+
+    margin-right: 50px;
+
     box-shadow: 1px 1px 12px purple;
-    & p{
+    & p {
         font-size: 20px;
     }
-  
 }
 
-.col-sm-6 img{
+.col-sm-6 img {
     box-shadow: 1px 1px 12px black;
-  height: 230px;
+    height: 230px;
     margin-top: 10px;
     margin-bottom: 10px;
     border-radius: 50px;
     margin-left: 50px;
 }
-
 
 h2 {
     margin-top: 50px;
@@ -50,5 +47,21 @@ h2 {
     color: purple;
     text-align: center;
     font-size: 30px;
-    
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1000px;
+    }
+}
+
+@media (min-width: 576px) {
+    .row {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .col-sm-6 img {
+        margin-left: 0;
+    }
 }
