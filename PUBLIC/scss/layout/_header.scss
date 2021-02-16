@@ -2,13 +2,15 @@ header {
     text-align: center;
     width: 100%;
     background-color:rgb(221, 181, 188);  
-    
-   
-
+    & p{
+        color: black;
+        font-weight: bold;
+    }
 }
 
 .navbar{
     padding: 0;
+    
     
 }
 
