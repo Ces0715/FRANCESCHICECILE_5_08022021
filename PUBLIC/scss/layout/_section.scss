@@ -5,6 +5,7 @@ body {
 section {
     height: 1600px;
     margin-top: 40px;
+    font-family:'Finger Paint', cursive;
 }
 
 .container{
@@ -17,27 +18,31 @@ h1 {
     color: purple;
     margin-bottom: 50px;
     font-size: 25px;
+    font-family: 'Finger Paint', cursive;
 }
 
 
 .row{
-    margin-left: 100px;
-    margin-right: 100px;  
+    margin-left: 50px;
+    
+    margin-right: 50px;  
+    height: 250px;
     box-shadow: 1px 1px 12px purple;
+    & p{
+        font-size: 20px;
+    }
   
 }
 
-.col-md-6 img{
-    box-shadow: 1px 1px 12px purple;
-    height: 200px; 
-    margin-top: 20px;
+.col-sm-6 img{
+    box-shadow: 1px 1px 12px black;
+  height: 230px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     border-radius: 50px;
     margin-left: 50px;
 }
 
-.col-md-6{
-    width:500px;
-}
 
 h2 {
     margin-top: 50px;
