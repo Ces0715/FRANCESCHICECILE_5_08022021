@@ -3,16 +3,14 @@ header {
     width: 100%;
     background-color:#F3E9F1;  
     & p{
-        color: black;
+        color: #9f64d0;
         font-weight: bold;
         font-family:'Finger Paint', cursive; ;
     }
 }
 
 .navbar{
-    padding: 0;
-    
-    
+    padding: 0;     
 }
 
 .navbar nav{
@@ -24,8 +22,9 @@ header {
 
 }
 
-.nav-link{
-    color: black;
-}
 
+
+.mr-auto{
+    margin-left: 850px!important;
+}
 
