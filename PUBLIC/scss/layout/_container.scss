@@ -23,12 +23,10 @@ h1 {
 
 .row {
     margin-left: 50px;
-
     margin-right: 50px;
-
     box-shadow: 1px 1px 12px purple;
     & p {
-        font-size: 20px;
+        font-size: 15px;
     }
 }
 
@@ -46,7 +44,7 @@ h2 {
     margin-right: 50px;
     color: purple;
     text-align: center;
-    font-size: 30px;
+    font-size: 25px;
 }
 
 @media (min-width: 1200px) {

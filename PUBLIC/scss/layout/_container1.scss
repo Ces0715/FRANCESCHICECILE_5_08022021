@@ -1,0 +1,34 @@
+body {
+    margin: 0;
+}
+
+section {
+    height: 1600px;
+    margin-top: 40px;
+    font-family: "Finger Paint", cursive;
+}
+
+.container1 {
+    padding-left: 0;
+    padding-right: 0;
+    &h1{
+
+            text-align: center;
+            color: purple;
+            margin-bottom: 50px;
+            font-size: 25px;
+            font-family: "Finger Paint", cursive;
+        }   
+        
+    & .row {
+            margin-left: 50px;
+            margin-right: 50px;
+        
+            box-shadow: 1px 1px 12px purple;
+            & p {
+                font-size: 15px;
+            }
+        }
+    }
+
+       

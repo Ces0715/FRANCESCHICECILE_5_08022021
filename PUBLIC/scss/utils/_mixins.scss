@@ -1,0 +1,8 @@
+@mixin row {
+    margin-left: 50px;
+    margin-right: 50px;
+    box-shadow: 1px 1px 12px purple;
+    & p {
+        font-size: 15px;
+    }
+}
