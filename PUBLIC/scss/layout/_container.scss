@@ -53,7 +53,7 @@ h2 {
     }
 }
 
-@media (min-width: 576px) {
+@media (max-width: 576px) {
     .row {
         margin-right: 0;
         margin-left: 0;
@@ -61,5 +61,10 @@ h2 {
 
     .col-sm-6 img {
         margin-left: 0;
+        margin-right: 10px;
+    }
+
+    .col-sm-6{  
+        padding-left: 5px;
     }
 }
