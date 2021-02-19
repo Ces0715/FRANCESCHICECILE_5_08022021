@@ -16,7 +16,8 @@
   },
   "homepage": "https://github.com/Ces0715/projet5#readme",
   "dependencies": {
-    "bootstrap": "^4.6.0"
+    "bootstrap": "^4.6.0",
+    "js": "^0.1.0"
   },
   "description": ""
 }
