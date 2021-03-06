@@ -13,15 +13,15 @@ fetch("http://localhost:3000/api/teddies")
 
 
 /*recuperation données*/
-const promise1 = fetch("http://localhost:3000/api/teddies");
-promise1
+const produits = fetch("http://localhost:3000/api/teddies");
+produits
 .then((response) =>{
   console.log(response);
   const teddiesData = response.json();
   console.log(teddiesData);
 
   teddiesData.then((utilisateur) => {
-  console.log(utilisateur[1].description)
+  console.log(utilisateur[3].name)
   });
 })
 .catch((erreur) => console.log(erreur));
