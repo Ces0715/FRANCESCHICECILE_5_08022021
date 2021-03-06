@@ -3,9 +3,7 @@
 function listeProduits(){
   console.log("test");
 }
-
 listeProduits();
-
 fetch("http://localhost:3000/api/teddies")
 .then(response => response.json())
 .then(response => alert(JSON.stringify(response)))
@@ -21,10 +19,31 @@ produits
   console.log(teddiesData);
 
   teddiesData.then((utilisateur) => {
-  console.log(utilisateur[3].name)
+    console.log(utilisateur[0]);
+
+    const txtName = utilisateur[0].name;
+    console.log(txtName);
+
+    const txtDescription = utilisateur[0].description;
+    console.log(txtDescription);
+
+    const txtPrice = utilisateur[0].price;
+    console.log(txtPrice);
+
+    const txtImage = utilisateur[0].imageUrl;
+    console.log(txtImage);
+
+    const txtColors = utilisateur[0].colors;
+    console.log(txtColors);
+
+    const txtId = utilisateur[0]._id;
+    console.log(txtId);
+
   });
-})
-.catch((erreur) => console.log(erreur));
+  
+  })
+
+ 
 
 
 
