@@ -54,7 +54,51 @@ produits.then((response) =>{
     const txtId1 = utilisateur[1]._id;
     console.log(txtId1);
 
+    console.log(utilisateur[2]);
+    const txtName2 = utilisateur[2].name;
+    console.log(txtName2);
+    const txtDescription2 = utilisateur[2].description;
+    console.log(txtDescription2);
+    const txtPrice2 = utilisateur[2].price;
+    console.log(txtPrice2);
+    const txtImage2 = utilisateur[2].imageUrl;
+    console.log(txtImage2);
+    const txtColors2 = utilisateur[2].colors;
+    console.log(txtColors2);
+    const txtId2 = utilisateur[2]._id;
+    console.log(txtId2);
 
+    console.log(utilisateur[3]);
+    const txtName3 = utilisateur[3].name;
+    console.log(txtName3);
+    const txtDescription3 = utilisateur[3].description;
+    console.log(txtDescription3);
+    const txtPrice3 = utilisateur[3].price;
+    console.log(txtPrice3);
+    const txtImage3 = utilisateur[3].imageUrl;
+    console.log(txtImage3);
+    const txtColors3 = utilisateur[3].colors;
+    console.log(txtColors3);
+    const txtId3 = utilisateur[3]._id;
+    console.log(txtId3);
+
+
+    console.log(utilisateur[4]);
+    const txtName4 = utilisateur[4].name;
+    console.log(txtName4);
+    const txtDescription4 = utilisateur[4].description;
+    console.log(txtDescription4);
+    const txtPrice4 = utilisateur[4].price;
+    console.log(txtPrice4);
+    const txtImage4 = utilisateur[4].imageUrl;
+    console.log(txtImage4);
+    const txtColors4 = utilisateur[4].colors;
+    console.log(txtColors4);
+    const txtId4 = utilisateur[4]._id;
+    console.log(txtId4);
+
+
+    /* affichege donnéees*/
     affichageCouleurs.innerHTML = txtColors1;
     affichagePrix.innerHTML =txtPrice1;
   });
