@@ -1,4 +1,4 @@
-*Norbert*/
+/*Norbert*/
   teddiesData.then((utilisateur) => {
     console.log(utilisateur[0]);
     const txtName = utilisateur[0].name;
