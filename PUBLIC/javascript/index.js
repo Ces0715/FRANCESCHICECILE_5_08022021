@@ -13,25 +13,45 @@ fetch("http://localhost:3000/api/teddies")
 
 /*recuperation données*/
 const produits = fetch("http://localhost:3000/api/teddies");
-produits.then((response) =>{
-  console.log(response);
-  const teddiesData = response.json();
-  console.log(teddiesData);
-   
+
+produits.then (async (responseData) =>{
+  console.log(responseData);
+const response =await responseData.json();
+console.log(response[0]);  
+
+try{
+  /*recup data API*/
+  const name = response[0].name;
+  const _id = response[0].id;
+  const imageUrl = response[0].imageUrl;
+  const description = response[0].description;
+  console.log(name);
+  console.log(_id);
+  console.log(imageUrl);
+  console.log(description);
+}
+catch(err){
+  console.log(err);
+}
 })
 
 
 /*declaration des teddies*/
 let teddiesData = ['Norbert', 'Arold', 'Lenny et Carl', 'Gustav', 'Garfunkel'];
 console.log(teddiesData);
+
+/* lien avec html*/
 let teddies = document.querySelector('#teddies');
 console.log(teddies);
 
 /*creation boucle*/
 for (let i = 0; i < teddiesData.length; i++) {
+  console.log(`Teddy ${teddiesData[i]}`);
+  
   //console.log(teddiesData[i])
   
-  teddies.innerHTML += '<div class="row mb-3"><div class="col-sm-6 col-lg-6 themed-grid-col">       <div class=" col-sm-6 col-lg-6 themed-grid-col">' +teddiesData[i]+ '</div class>';
+  
+ // teddies.innerHTML += '<div class="row mb-3"><div class="col-sm-6 col-lg-6 themed-grid-col">       <div class=" col-sm-6 col-lg-6 themed-grid-col">' +teddiesData[i]+ '</div class>';
 
 }
 
@@ -43,8 +63,9 @@ let teddy1 = {
   'imageURL':'http://localhost:3000/images/teddy_1.jpg',
   'price':'2900',
   'colors':'"Tan", "Chocolate", "Black", "White"',
-}
-console.log(teddy1);
+};
+
+
 
 
 let teddy2 = {
@@ -55,7 +76,7 @@ let teddy2 = {
   'price':'3900',
   'colors':'"Pale brown", "Dark brown", "White"',
 }
-console.log(teddy2);
+
 
 let teddy3 = {
   'name' : 'Lenny and Carl',
@@ -65,7 +86,7 @@ let teddy3 = {
   'price':'5900',
   'colors':'" Brown"',
 }
-console.log(teddy3);
+
 
 let teddy4 = {
   'name' : 'Gustav',
@@ -75,7 +96,7 @@ let teddy4 = {
   'price':'4500',
   'colors':'" Brown", "Blue", "Pink"',
 }
-console.log(teddy4);
+
 
 let teddy5 = {
   'name' : 'Garfunkel',
@@ -85,26 +106,20 @@ let teddy5 = {
   'price':'5500',
   'colors':'" Beige", "Tan", "Chocolate"',
 }
-console.log(teddy5);
-
-
-let AllTeddies = ['teddy1', 'teddy2', 'teddy3', 'teddy4', 'teddy5'];
-console.log(AllTeddies);
-console.log(AllTeddies[0]);
-console.log(AllTeddies[1]);
-console.log(AllTeddies[2]);
-console.log(AllTeddies[3]);
-console.log(AllTeddies[4]);
 
 
 
-for(let i = 0 ; i < AllTeddies.length  ; i++ ){
-	console.log(AllTeddies[i]);
-	let nom = AllTeddies[i].name;
-	let couleur = AllTeddies[i].colors;
-  let id = AllTeddies[i].id;
-  let description = AllTeddies[i].description;
-  let prix = AllTeddies[i].price;
-	
-}
+let tabTeddies = [teddy1, teddy2, teddy3, teddy4, teddy5];
 
+
+
+for (let i = 0; i < tabTeddies.length; i++) {
+  console.log(tabTeddies[i]);
+  let nom = tabTeddies[i].name;
+  console.log(nom);
+  let description = tabTeddies[i].description;
+  console.log(description);
+  teddies.innerHTML +=`<div class="row mb-3"><div class="col-sm-6 col-lg-6 themed-grid-col">      
+   <div class=" col-sm-6 col-lg-6 themed-grid-col"> <h2 id="name">${tabTeddies[i].name } <p id="description">
+   - ${tabTeddies[i].description }</div class>`;
+  }

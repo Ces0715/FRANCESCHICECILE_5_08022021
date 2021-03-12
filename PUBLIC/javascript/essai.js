@@ -1,3 +1,17 @@
+
+/*recuperation données*/
+const produits = fetch("http://localhost:3000/api/teddies");
+produits.then((response) =>{
+  console.log(response);
+  const teddiesData = response.json();
+  console.log(teddiesData);
+   
+})
+
+
+
+
+
 /*Norbert*/
   teddiesData.then((utilisateur) => {
     console.log(utilisateur[0]);
@@ -181,3 +195,24 @@ function async (listeProduits) {
   })
   
   })
+
+  teddies.innerHTML += '<div class="row mb-3"><div class="col-sm-6 col-lg-6 themed-grid-col">       <div class=" col-sm-6 col-lg-6 themed-grid-col">' +teddiesData[i]+ '</div class>';
+
+  let AllTeddies = ['teddy1', 'teddy2', 'teddy3', 'teddy4', 'teddy5'];
+console.log(AllTeddies);
+console.log(AllTeddies[0]);
+console.log(AllTeddies[1]);
+console.log(AllTeddies[2]);
+console.log(AllTeddies[3]);
+console.log(AllTeddies[4]);
+
+
+for(let i = 0 ; i < AllTeddies.length  ; i++ ){
+	console.log(AllTeddies[i]);
+	let nom = AllTeddies[i].name;
+	let couleur = AllTeddies[i].colors;
+  let id = AllTeddies[i].id;
+  let description = AllTeddies[i].description;
+  let prix = AllTeddies[i].price;
+	
+}
