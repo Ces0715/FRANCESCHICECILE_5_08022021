@@ -19,18 +19,22 @@ produits.then (async (responseData) =>{
   console.log(responseData);
 
 const articles =await responseData.json();
+//boucle teddies
 for(let i = 0; i < articles.length; i++){
   const article = articles[i];
   displayArticle(article)
   console.log(article); 
-  console.log(articles);  
+  console.log(articles);   
 //données ok
+
 }
 
-
+//affichage teddies
 function displayArticle(article){
-document.getElementById("teddies").innerHTML +=`<div class="row mb-3"><div class="col-sm-6 col-lg-6 themed-grid-col">      
-<div class=" col-sm-6 col-lg-6 themed-grid-col"> <h2 id="name">${article.name } <p id="description">
-- ${article.description }</div class>`;
+document.getElementById("teddies").innerHTML +=`<div class="row mb-3">     
+<div class=" col-sm-6 col-lg-6 themed-grid-col"> <h2 id="name">${article.name }</h2> <p id="description">
+- ${article.description }</div class> <div class="col-sm-6 col-lg-6 themed-grid-col"> <img width="300"  src = "${article.imageUrl}">
+`;
+
 }
 })
