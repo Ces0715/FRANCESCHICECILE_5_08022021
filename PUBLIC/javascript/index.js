@@ -24,7 +24,8 @@ for(let i = 0; i < articles.length; i++){
   const article = articles[i];
   displayArticle(article)
   console.log(article); 
-  console.log(articles);   
+  console.log(articles);  
+  
 //données ok
 
 }
@@ -32,8 +33,9 @@ for(let i = 0; i < articles.length; i++){
 //affichage teddies
 function displayArticle(article){
 document.getElementById("teddies").innerHTML +=`<div class="row mb-3">     
-<div class=" col-sm-6 col-lg-6 themed-grid-col"> <h2 id="name">${article.name }</h2> <p id="description">
-- ${article.description }</div class> <div class="col-sm-6 col-lg-6 themed-grid-col"> <a href=./produit.html>
+<div class=" col-sm-6 col-lg-6 themed-grid-col"> <h2 id="name">${article.name }</h2> <p id="id">${article._id }</p>
+<p id="description">
+- ${article.description }</div class> <div class="col-sm-6 col-lg-6 themed-grid-col"> <a href="./produit.html?${article._id }">
 <img width="300"  src = "${article.imageUrl}">
 `;
 
