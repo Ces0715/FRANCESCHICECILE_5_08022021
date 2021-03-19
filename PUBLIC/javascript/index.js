@@ -33,7 +33,8 @@ for(let i = 0; i < articles.length; i++){
 function displayArticle(article){
 document.getElementById("teddies").innerHTML +=`<div class="row mb-3">     
 <div class=" col-sm-6 col-lg-6 themed-grid-col"> <h2 id="name">${article.name }</h2> <p id="description">
-- ${article.description }</div class> <div class="col-sm-6 col-lg-6 themed-grid-col"> <img width="300"  src = "${article.imageUrl}">
+- ${article.description }</div class> <div class="col-sm-6 col-lg-6 themed-grid-col"> <a href=./produit.html>
+<img width="300"  src = "${article.imageUrl}">
 `;
 
 }
