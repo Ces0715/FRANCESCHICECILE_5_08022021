@@ -383,3 +383,18 @@ console.log(articles);
 //données ok
 
 })
+
+
+/*Antoine info*/
+//function listeProduits(){
+ // console.log("test");
+//}
+//listeProduits();
+//fetch("http://localhost:3000/api/teddies")
+//.then(response => response.json())
+//.then(response => alert(JSON.stringify(response)))
+//.catch(error => alert("Erreur : " + error));
+
+//function displayArticle(){
+  //document.getElementById("teddies").innerHTML +='<article class="teddy"><span id="name"></span><span id="_id"></span><span id="imageUrl"></span><span id="description"></span></article>'
+//}
