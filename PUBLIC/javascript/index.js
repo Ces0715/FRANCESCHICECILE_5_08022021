@@ -9,6 +9,7 @@ produits.then(async (responseData) => {
     //const article = articles[i];
     displayArticle(articles[i])
     //données ok
+    console.log(articles);
   }
 
   //affichage teddies
