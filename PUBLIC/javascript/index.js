@@ -11,9 +11,7 @@ produits.then(async (responseData) => {
     //données ok
     console.log(articles);
   }
-
   //affichage teddies
-  
 })
 
 function displayArticle(article) {
