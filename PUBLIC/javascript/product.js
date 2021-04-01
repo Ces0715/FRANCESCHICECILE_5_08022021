@@ -40,29 +40,26 @@ response.then(async(data)=>{
       <h2 id="name">${article.name}</h2> 
       <p id="id">Reférence:${article._id}</p>
       <p id="price">Prix: ${article.price/100} €</p> 
+      <form>
+        <label id ="labelOptions"> Couleur:
+          <select name="choix" id="choix">    </select>
+        </label> 
+      </form>
 
-<form>
-    <label id ="labelOptions"> Choisir la couleur:
-      <select name="choix" id="choix">    
-      </select>
+      <form>
+        <label id="selectQuantity"> Quantité :
+          <select name ="quantity" id ="choose"></select> 
+        </label>
+      </form>
+    </div>
 
-  </label> 
-  <label id="selectQuantity"> Quantité
-    <select name ="quantity" id ="choose">
-        <option value="1">1</option>
-                
-   </select> 
-</label>
-</form>
-</div>
+    <div class="col-sm-6 col-lg-6 themed-grid-col"> 
+      <a href="./produit.html?id=${'_id'}">
+      <img width="300"  src = "${article.imageUrl}">
+      <button id ="btn-envoyer" type="submit name="btn-envoyer">Ajouter au panier</button>
+    </div> `;
 
-<div class="col-sm-6 col-lg-6 themed-grid-col"> 
-  <a href="./produit.html?id=${'_id'}">
-  <img width="300"  src = "${article.imageUrl}">
-  <button id ="btn-envoyer" type="submit name="btn-envoyer">Ajouter au panier</button>
-</div> `;
-
-//adapter le formulaire au nombre d'option du produit
+//adapter le formulaire au nombre d'options couleurs du produit
 const optionCouleur = article.colors;
 //ou utiliser const optionCouleur = article["colors"];
 let structureOptions = [];
@@ -76,11 +73,10 @@ for(let j = 0; j < optionCouleur.length; j++){
  `;         
 }
 //console.log(structureOptions);
-
 const choixCouleur = document.querySelector("#choix");
-console.log(choixCouleur);
+//console.log(choixCouleur);
 choixCouleur.innerHTML = structureOptions;
-console.log(choixCouleur);
+
 
 
 
