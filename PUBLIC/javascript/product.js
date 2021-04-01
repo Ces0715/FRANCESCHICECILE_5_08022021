@@ -42,24 +42,15 @@ response.then(async(data)=>{
       <p id="price">Prix: ${article.price/100} €</p> 
 
 <form>
-   <label for ="option_couleur"> Choisir la couleur :</label>
-    <select name ="option_couleur" id ="option_couleur">
-      <option value="option
-
-      <label id ="labelOptions"> Choisir la couleur:
-      <select>
-          <option>${article.colors[0]}  </option> 
-          <option>${article.colors}  </option> 
+    <label id ="labelOptions"> Choisir la couleur:
+      <select name="choix" id="choix">    
       </select>
 
   </label> 
   <label id="selectQuantity"> Quantité
     <select name ="quantity" id ="choose">
         <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>             
+                
    </select> 
 </label>
 </form>
@@ -72,16 +63,25 @@ response.then(async(data)=>{
 </div> `;
 
 //adapter le formulaire au nombre d'option du produit
-let optionCouleur = article.colors;
+const optionCouleur = article.colors;
 //ou utiliser const optionCouleur = article["colors"];
-console.log(optionCouleur);
+let structureOptions = [];
+//console.log(optionCouleur);
 
 // boucle for pour afficher options couleur
-for(let j =0; j < optionCouleur.length; j++){
-  structureOptions = + 
-  `
-  `
+for(let j = 0; j < optionCouleur.length; j++){
+  structureOptions = 
+  structureOptions + 
+ `<option value = "${j}">${optionCouleur[j]}  </option> 
+ `;         
 }
+//console.log(structureOptions);
+
+const choixCouleur = document.querySelector("#choix");
+console.log(choixCouleur);
+choixCouleur.innerHTML = structureOptions;
+console.log(choixCouleur);
+
 
 
 // selection id du formulaire
