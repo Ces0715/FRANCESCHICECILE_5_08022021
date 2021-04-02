@@ -21,8 +21,6 @@ response.then(async(data)=>{
      //console.log(article[propt]); 
      //console.log(article.colors) ;  
 
-     
-   
    //for (const couleur of article.colors){
      //console.log(couleur); 
    //}
@@ -31,7 +29,6 @@ response.then(async(data)=>{
    //article.colors.forEach((couleur) =>{
     //console.log(couleur);
     
-   
 
 //preparation structure HTML pour affichage produit
   document.getElementById("produit").innerHTML += 
@@ -42,19 +39,17 @@ response.then(async(data)=>{
       <p id="price">Prix: ${article.price/100} €</p> 
       <form>
         <label id ="labelOptions"> Couleur:
-          <select name="choix" id="choix">    </select>
+          <select name="choix" id="choix"> </select>
         </label> 
       </form>
-
       <form>
         <label id="selectQuantity"> Quantité :
           <select name ="quantity" id ="choose"></select> 
         </label>
       </form>
     </div>
-
     <div class="col-sm-6 col-lg-6 themed-grid-col"> 
-      <a href="./produit.html?id=${'_id'}">
+      <a href="./panier.html?id=${'_id'}">
       <img width="300"  src = "${article.imageUrl}">
       <button id ="btn-envoyer" type="submit name="btn-envoyer">Ajouter au panier</button>
     </div> `;
@@ -63,20 +58,28 @@ response.then(async(data)=>{
 const optionCouleur = article.colors;
 //ou utiliser const optionCouleur = article["colors"];
 let structureOptions = [];
-//console.log(optionCouleur);
-
 // boucle for pour afficher options couleur
 for(let j = 0; j < optionCouleur.length; j++){
-  structureOptions = 
-  structureOptions + 
- `<option value = "${j}">${optionCouleur[j]}  </option> 
- `;         
+  structureOptions = structureOptions + 
+ `<option value = "${j}">${optionCouleur[j]}  </option> `;         
 }
 //console.log(structureOptions);
 const choixCouleur = document.querySelector("#choix");
-//console.log(choixCouleur);
 choixCouleur.innerHTML = structureOptions;
 
+// choisir nombre
+let optionNombre = ['1', '2', '3', '4', '5'];
+//console.log(optionNombre);
+
+let structureNombre =[];
+//console.log(structureNombre);
+for (let k = 0; k < optionNombre.length; k++){
+  structureNombre = structureNombre +
+  `<option value = "${k}">${optionNombre[k]}  </option> `;         
+}
+//console.log(structureNombre);
+const choixNombre = document.querySelector("#choose");
+choixNombre.innerHTML = structureNombre;
 
 
 
@@ -91,14 +94,20 @@ choixCouleur.innerHTML = structureOptions;
 const btnPanier = document.querySelector("#btn-envoyer");
 console.log(btnPanier);
 
-//ecouter le bouton
+//ecouter le bouton et envoyer au panier
 btnPanier.addEventListener("click",(event)=>{
+  event.preventDefault();
   btnPanier.innerHTML = "cliqué";
+});
+
+//recuperation valeur du formulaire
+let optionsProduit = {
+name: article.name,
+id:article._id,
+price:article.price /100,
+optionCouleur:choix,
+selectQuantity:choixNombre,
 }
-
-);
-
-}
-
-);
+console.log(optionsProduit);
+})
 

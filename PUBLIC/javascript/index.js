@@ -1,4 +1,3 @@
-
 /*recuperation données*/
 const produits = fetch("http://localhost:3000/api/teddies");
 produits.then(async (responseData) => {
