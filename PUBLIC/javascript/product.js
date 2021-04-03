@@ -37,11 +37,13 @@ response.then(async(data)=>{
       <h2 id="name">${article.name}</h2> 
       <p id="id">Reférence:${article._id}</p>
       <p id="price">Prix: ${article.price/100} €</p> 
+
       <form>
         <label id ="labelOptions"> Couleur:
           <select name="choix" id="choix"> </select>
         </label> 
       </form>
+
       <form>
         <label id="selectQuantity"> Quantité :
           <select name ="quantity" id ="choose"></select> 
@@ -81,14 +83,10 @@ for (let k = 0; k < optionNombre.length; k++){
 const choixNombre = document.querySelector("#choose");
 choixNombre.innerHTML = structureNombre;
 
-
-
-// selection id du formulaire
-//const idForm = document.querySelector("#labelOptions");
-//console.log(idForm);
-//const choixCouleur =idForm;
-//console.log(choixCouleur);
-
+const choixForm = choixCouleur.value;
+console.log(choixForm);
+const choixForm2 = choixNombre.value;
+console.log(choixForm2);
 
 //selection bouton pour l'ajout au panier
 const btnPanier = document.querySelector("#btn-envoyer");
@@ -98,16 +96,34 @@ console.log(btnPanier);
 btnPanier.addEventListener("click",(event)=>{
   event.preventDefault();
   btnPanier.innerHTML = "cliqué";
-});
-
 //recuperation valeur du formulaire
+
 let optionsProduit = {
-name: article.name,
-id:article._id,
-price:article.price /100,
-optionCouleur:choix,
-selectQuantity:choixNombre,
+  name: article.name,
+  id:article._id,
+  price:article.price /100,
+  optionCouleur:choixForm,
+  selectQuantity:choixForm2,
+  }
+  console.log(optionsProduit);
+
+  // local storage
+//declaration variable pour mettre key et value dans le local storage
+let produitLocal = JSON.parse(localStorage.getItem("produit"));
+console.log(produitLocal);
+
+//si produits deja dans local storage
+if(produitLocal){
+
 }
-console.log(optionsProduit);
-})
+//si pas de produits
+else{
+  produitLocal =[];
+  produitLocal.push(optionsProduit);
+
+  console.log(produitLocal);
+}
+}) 
+
+});
 
