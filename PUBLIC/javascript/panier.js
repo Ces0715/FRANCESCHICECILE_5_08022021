@@ -8,7 +8,22 @@ console.log(produitPanier);
 
 // si panier vide..afficher "panier vide"(=== null)
 if(produitLocal=== null){
-console.log("je suis vide");
+const panierVide = `
+<div class ="panier vide">
+    <div> Le panier est vide </div>
+</div>
+`;
+produitPanier.innerHTML = panierVide;
+
 } else{
-    console.log("pas vide");
+    // si panier pas vide : afficher produits dans local storage
+    let structureProduitPanier =[];
+    for (l= 0; l < produitLocal.lenght; l++){
+    
+        structureProduitPanier = structureProduitPanier +`
+        
+        `
+
+    }
+    
 }
