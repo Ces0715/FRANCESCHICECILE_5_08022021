@@ -2,7 +2,6 @@
 const queryString_url_id = window.location.search;
 console.log(queryString_url_id);
 
-
 // methode2 pour extraire l 'id
 const urlSearchParams = new URLSearchParams(queryString_url_id);
 console.log(urlSearchParams);
@@ -15,21 +14,17 @@ const response = fetch (`http://localhost:3000/api/teddies/${id}`);
 response.then(async(data)=>{
 
     const article = await data.json();
-    //console.log(article);
-    //console.log(response);
    //for (const propt in article){
      //console.log(article[propt]); 
      //console.log(article.colors) ;  
 
    //for (const couleur of article.colors){
-     //console.log(couleur); 
-   //}
+     //console.log(couleur);}
    //boucle couleurs
    //let optionCouleur = [""];
    //article.colors.forEach((couleur) =>{
     //console.log(couleur);
     
-
 //preparation structure HTML pour affichage produit
   document.getElementById("produit").innerHTML += 
 `<div class="row mb-3">     
@@ -107,23 +102,41 @@ let optionsProduit = {
   }
   console.log(optionsProduit);
 
-  // local storage
+// local storage
 //declaration variable pour mettre key et value dans le local storage
 let produitLocal = JSON.parse(localStorage.getItem("produit"));
 console.log(produitLocal);
 
+//fonction fenetre pop up
+const popupConfirm = () =>{
+  if(window.confirm( `${article.name}option :${choixForm} ajouté au panier Consultez le panier ou retour accueil` )){
+    window.location.href = "panier.html";
+  }
+  else{
+    window.location.href = "index.html"
+  }
+}
+
+//fonction ajout du produit selectionné dans le localStorage
+const ajoutProduitLocalStorage =() =>{
+  produitLocal.push(optionsProduit);
+  
+// transformation en format JSON et envoi dans la key "produit" du local Storage
+localStorage.setItem("produit", JSON.stringify(produitLocal));
+};
+
 //si produits deja dans local storage
 if(produitLocal){
+  ajoutProduitLocalStorage();
+  popupConfirm();
 
 }
 //si pas de produits
 else{
   produitLocal =[];
-  produitLocal.push(optionsProduit);
-
-  console.log(produitLocal);
+  ajoutProduitLocalStorage();
+  popupConfirm();
 }
 }) 
-
 });
 
