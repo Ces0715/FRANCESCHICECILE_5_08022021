@@ -35,6 +35,10 @@ document.getElementById("produit").innerHTML +=
       <button id ="btn-envoyer" type="submit name="btn-envoyer">Ajouter au panier</button>
     </div> `;
 
+//---------------------------------------le formulaire d adapteau nob d option----------
+const optionQuantité = article.colors;
+console.log(optionQuantité);
+
 //adapter le formulaire au nombre d'options couleurs du produit
 const optionCouleur = article.colors;
 //ou utiliser const optionCouleur = article["colors"];
@@ -52,9 +56,9 @@ const choixForm = choixCouleur.value;
 console.log(choixForm);
 choixCouleur.innerHTML = structureOptions;       
 
+//----------------------------TEST------------------------------------------
 //choisir nombre
 let optionNombre = ['1', '2', '3', '4', '5'];
-//console.log(optionNombre);
 
 let structureNombre =[];
 //console.log(structureNombre);
@@ -84,9 +88,8 @@ let optionsProduit = {
   name: article.name,
   id:article._id,
   price:article.price /100,
-  option_couleur:choixForm,
-  choose:choixForm2,
- 
+  //option_couleur:article.optionCouleur,
+  //choose:choixForm2,
   }
 console.log(optionsProduit);
 
