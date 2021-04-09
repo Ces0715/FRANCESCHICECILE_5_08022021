@@ -1,55 +1,72 @@
 //recuperation chaine de requete dans url
 const queryString_url_id = window.location.search;
-console.log(queryString_url_id);
 
 // methode2 pour extraire l 'id
 const urlSearchParams = new URLSearchParams(queryString_url_id);
-console.log(urlSearchParams);
 const id = urlSearchParams.get("id");
-console.log(id);
 
 //affichage du produit selectionné par son id
 //methode 1 avec fetch en mettant l'id a la fin de l url
 const response = fetch (`http://localhost:3000/api/teddies/${id}`);
 response.then(async(data)=>{
     const article = await data.json();
-     
+    
 //preparation structure HTML pour affichage produit
+document.getElementById("produit").innerHTML += 
+`<div class="row mb-3">     
+    <div class=" col-sm-6 col-lg-6 themed-grid-col"> 
+      <h2 id="name">${article.name}</h2> 
+      <p id="id">Reférence:${article._id}</p>
+      <p id="price">Prix: ${article.price/100} €</p> 
+      <form>
+        <label for ="option_couleur"> Choisir la couleur:
+          <select name="choix" id="option_couleur"> </select>
+        </label> 
+      </form>
+      <form>
+        <label for ="option_quantité"> Choisir la quantité :
+          <select name ="quantity" id ="option_quantité"></select> 
+        </label>
+      </form>
+    </div>
+    <div class="col-sm-6 col-lg-6 themed-grid-col"> 
+      <a href="./panier.html?id=${'_id'}">
+      <img width="300"  src = "${article.imageUrl}">
+      <button id ="btn-envoyer" type="submit name="btn-envoyer">Ajouter au panier</button>
+    </div> `;
 
-afficherProduit(article);
- function afficherProduit(article) {
-  document.getElementById("produit").innerHTML += 
-  `<div class="row mb-3">     
-      <div class=" col-sm-6 col-lg-6 themed-grid-col"> 
-        <h2 id="name">${article.name}</h2> 
-        <p id="id">Reférence:${article._id}</p>
-        <p id="price">Prix: ${article.price/100} €</p> 
-        <form>
-        <label for ="option_couleur"> Choisir la couleur : </label>
-          <select name ="option_couleur" id = "option_couleur> </select>   
-        </form>
-
-        <form>
-          <label for ="option_quantité"> Choisir la quantité : </label>
-            <select name ="option_quantité" id ="option_quantité">    
-            </select>  
-        </form>
-      </div>
-      <div class="col-sm-6 col-lg-6 themed-grid-col"> 
-        <a href="./panier.html?id=${'_id'}">
-        <img width="300"  src = "${article.imageUrl}">
-        <button id ="btn-envoyer" type="submit name="btn-envoyer">Ajouter au panier</button>
-      </div> `;
-
-
+//adapter le formulaire au nombre d'options couleurs du produit
+const optionCouleur = article.colors;
+//ou utiliser const optionCouleur = article["colors"];
+let structureOptions = [];
+// boucle for pour afficher options couleur
+for(let j = 0; j < optionCouleur.length; j++){
+  structureOptions = structureOptions + 
+ `<option value = "${j}">${optionCouleur[j]}  </option> `;         
+}
+//selection id des couleurs
 const choixCouleur = document.querySelector("#option_couleur");
-console.log(choixCouleur);
+
+//mettre choix de l utilisateur dans une variable
 const choixForm = choixCouleur.value;
 console.log(choixForm);
+choixCouleur.innerHTML = structureOptions;       
 
+//choisir nombre
+let optionNombre = ['1', '2', '3', '4', '5'];
+//console.log(optionNombre);
 
+let structureNombre =[];
+//console.log(structureNombre);
+for (let k = 0; k < optionNombre.length; k++){
+  structureNombre = structureNombre +
+  `<option value = "${k}">${optionNombre[k]}  </option> `;         
+}
+//console.log(structureNombre);
+
+//selection id quantité
 const choixNombre = document.querySelector("#option_quantité");
-console.log(choixNombre);
+choixNombre.innerHTML = structureNombre;
 const choixForm2 = choixNombre.value;
 console.log(choixForm2);
 
@@ -61,15 +78,15 @@ console.log(btnPanier);
 btnPanier.addEventListener("click",(event)=>{
   event.preventDefault();
   btnPanier.innerHTML = "cliqué";
-//recuperation valeur du formulaire
-//--------------------------------------------------
 
+//recuperation valeur du formulaire
 let optionsProduit = {
   name: article.name,
   id:article._id,
   price:article.price /100,
   option_couleur:choixForm,
-  option_quantité:choixForm2,
+  choose:choixForm2,
+ 
   }
 console.log(optionsProduit);
 
@@ -108,55 +125,4 @@ else{
 }
 }) 
 
-//-----------------------------------------------------------
-function afficherProduit(article) {
-  document.getElementById("produit").innerHTML += 
-  `<div class="row mb-3">     
-      <div class=" col-sm-6 col-lg-6 themed-grid-col"> 
-        <h2 id="name">${article.name}</h2> 
-        <p id="id">Reférence:${article._id}</p>
-        <p id="price">Prix: ${article.price/100} €</p> 
-        <form>
-        <label for ="option_couleur"> Choisir la couleur </label>
-          <select name ="option_couleur" id = "option_couleur>
-            <option value ="option1"> option1</option>
-            <select name="choix" id="choix"> </select> 
-        </form>
-        <form>
-          <label id="selectQuantity"> Quantité :
-            <select name ="quantity" id ="choose"></select> 
-          </label>
-        </form>
-      </div>
-      <div class="col-sm-6 col-lg-6 themed-grid-col"> 
-        <a href="./panier.html?id=${'_id'}">
-        <img width="300"  src = "${article.imageUrl}">
-        <button id ="btn-envoyer" type="submit name="btn-envoyer">Ajouter au panier</button>
-      </div> `;
-      
-}
-
-  //les options couleurs du produit
-  const optionCouleur = article.colors;
-  console.log(optionCouleur);
-  let structureOptions = "";
-  // boucle for pour afficher options couleur
-  for(let j = 0; j < optionCouleur.length; j++){
-    structureOptions +=  `<option value = "${j}"> ${optionCouleur[j]}  </option> `;         
-  }
-  
-  //choixCouleur.innerHTML = structureOptions;
-  
-  
-  // choisir nombre
-  let optionNombre = ['1', '2', '3', '4', '5'];
-  let structureNombre =[];
-  // ou let structureNombre ="";
-  for (let k = 0; k < optionNombre.length; k++){
-    structureNombre += `<option value = "${k}">${optionNombre[k]}  </option> `;         
-  }
-  //console.log(structureNombre);
-  
-  choixNombre.innerHTML = structureNombre;
-};
 });
