@@ -10,6 +10,9 @@ const id = urlSearchParams.get("id");
 const response = fetch (`http://localhost:3000/api/teddies/${id}`);
 response.then(async(data)=>{
     const article = await data.json();
+
+    afficherProduit(article);
+    function afficherProduit(article){  
     
 //preparation structure HTML pour affichage produit
 document.getElementById("produit").innerHTML += 
@@ -20,7 +23,7 @@ document.getElementById("produit").innerHTML +=
       <p id="price">Prix: ${article.price/100} €</p> 
       <form>
         <label for ="option_couleur"> Choisir la couleur:
-          <select name="choix" id="option_couleur"> </select>
+          <select name="choix" id="option_couleur" > </select>
         </label> 
       </form>
       <form>
@@ -34,66 +37,58 @@ document.getElementById("produit").innerHTML +=
       <img width="300"  src = "${article.imageUrl}">
       <button id ="btn-envoyer" type="submit name="btn-envoyer">Ajouter au panier</button>
     </div> `;
-
+  }
 //---------------------------------------le formulaire d adapteau nob d option----------
-const optionQuantité = article.colors;
-console.log(optionQuantité);
 
 //adapter le formulaire au nombre d'options couleurs du produit
 const optionCouleur = article.colors;
-//ou utiliser const optionCouleur = article["colors"];
-let structureOptions = [];
+let structureOptions = "";
 // boucle for pour afficher options couleur
 for(let j = 0; j < optionCouleur.length; j++){
-  structureOptions = structureOptions + 
- `<option value = "${j}">${optionCouleur[j]}  </option> `;         
+  structureOptions +=  `<option value = "${j+1}">${optionCouleur[j]}  </option> `;         
 }
 //selection id des couleurs
 const choixCouleur = document.querySelector("#option_couleur");
-
 //mettre choix de l utilisateur dans une variable
-const choixForm = choixCouleur.value;
-console.log(choixForm);
 choixCouleur.innerHTML = structureOptions;       
 
-//----------------------------TEST------------------------------------------
 //choisir nombre
 let optionNombre = ['1', '2', '3', '4', '5'];
-
 let structureNombre =[];
 //console.log(structureNombre);
 for (let k = 0; k < optionNombre.length; k++){
-  structureNombre = structureNombre +
-  `<option value = "${k}">${optionNombre[k]}  </option> `;         
+  structureNombre += 
+  `<option value = "${k+1}">${optionNombre[k]}  </option> `;         
 }
-//console.log(structureNombre);
 
 //selection id quantité
 const choixNombre = document.querySelector("#option_quantité");
 choixNombre.innerHTML = structureNombre;
-const choixForm2 = choixNombre.value;
-console.log(choixForm2);
 
 //selection bouton pour l'ajout au panier
 const btnPanier = document.querySelector("#btn-envoyer");
-console.log(btnPanier);
 
 //ecouter le bouton et envoyer au panier
 btnPanier.addEventListener("click",(event)=>{
   event.preventDefault();
   btnPanier.innerHTML = "cliqué";
 
+  const choixForm = choixCouleur.value;
+  console.log(choixForm);
+  const choixForm2 = choixNombre.value;
+  console.log(choixForm2);
+
 //recuperation valeur du formulaire
 let optionsProduit = {
   name: article.name,
   id:article._id,
   price:article.price /100,
-  //option_couleur:article.optionCouleur,
-  //choose:choixForm2,
+  option_couleur:choixForm,
+  option_quantité:choixForm2,
   }
 console.log(optionsProduit);
 
-//-----------------------------------------------------------------------------------
+
 // LOCAL STORAGE
 //declaration variable pour mettre key et value dans le local storage
 let produitLocal = JSON.parse(localStorage.getItem("produit"));
