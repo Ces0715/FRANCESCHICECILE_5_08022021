@@ -24,8 +24,12 @@ produitPanier.innerHTML = panierVide;
         `<div class="row mb-3">     
             <div class=" col-sm-6 col-lg-6 themed-grid-col"> 
                 <h2>Les produits sélectionnés</h2>
-                <p>Nom</p>
-                <p>Quantité ${produitLocal[l].name}</p>
+                <h2 id="name">${produitLocal.name}</h2> 
+                <p id="id">Reférence:${produitLocal._id}</p>
+                <p id="price">Prix: ${produitLocal.price/100} €</p> 
+                <p id = "quantité" >Quantité ${produitLocal[l].name}</p>
+                <p id = "supArticle" >Supprimer l'article </p>
+
             </div>
             <div class="col-sm-6 col-lg-6 themed-grid-col">  
                 <p>Montant total</p>
