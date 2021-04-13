@@ -5,6 +5,7 @@ console.log(produitLocal);
 // affichage produits panier-- selection classe ou injection code html
 const produitPanier = document.querySelector("#panier");
 
+
 // si panier vide..afficher "panier vide"(=== null)
 if(produitLocal=== null){
     const panierVide = 
@@ -18,31 +19,29 @@ produitPanier.innerHTML = panierVide;
     // si panier pas vide : afficher produits dans local storage
     let structureProduitPanier =[];
     
-    for (l= 0; l < produitLocal.length; l++) {
+    for (let l= 0; l < produitLocal.length; l++) {
         //console.log(produitLocal.length);  
-  structureProduitPanier = structureProduitPanier + 
+  structureProduitPanier += 
         `<div class="row mb-3">     
             <div class=" col-sm-6 col-lg-6 themed-grid-col"> 
-                <h2>Les produits sélectionnés</h2>
-                <h2 id="name">${produitLocal.name}</h2> 
-                <p id="id">Reférence:${produitLocal._id}</p>
-                <p id="price">Prix: ${produitLocal.price/100} €</p> 
-                <p id = "quantité" >Quantité ${produitLocal[l].name}</p>
+                
+                <h2 id="name">${produitLocal[l].name}</h2> 
+                <p id="price">Prix: ${produitLocal[l].price} €</p> 
+                <p id = "couleur" >Couleur : ${produitLocal[l].option_couleur}</p>
+                <p id = "quantité" >Quantité : ${produitLocal[l].option_quantité}</p>
                 <p id = "supArticle" >Supprimer l'article </p>
 
             </div>
             <div class="col-sm-6 col-lg-6 themed-grid-col">  
-                <p>Montant total</p>
+                <h2 id = "montant"> Montant total :</h2>
                 <p>Vider le panier</p>
             </div>   
-        </div>
-    
-        `;
+        </div>  `;            
 }
 
-        if(l === produitLocal.lenght){
+//if(l == produitLocal.length){
     // injection html dans la page panier
     produitPanier.innerHTML = structureProduitPanier;
 
-    }
-}
+    } 
+//}
