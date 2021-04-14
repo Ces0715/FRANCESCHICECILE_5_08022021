@@ -43,12 +43,14 @@ document.getElementById("produit").innerHTML +=
 //adapter le formulaire au nombre d'options couleurs du produit
 const optionCouleur = article.colors;
 let structureOptions = "";
+
 // boucle for pour afficher options couleur
 for(let j = 0; j < optionCouleur.length; j++){
-  structureOptions +=  `<option value = "${j+1}">${optionCouleur[j]}  </option> `;         
+  structureOptions +=  `<option value = "${optionCouleur[j]}">${optionCouleur[j]}  </option> `;         
 }
 //selection id des couleurs
 const choixCouleur = document.querySelector("#option_couleur");
+
 //mettre choix de l utilisateur dans une variable
 choixCouleur.innerHTML = structureOptions;       
 
@@ -58,7 +60,7 @@ let structureNombre =[];
 //console.log(structureNombre);
 for (let k = 0; k < optionNombre.length; k++){
   structureNombre += 
-  `<option value = "${k+1}">${optionNombre[k]}  </option> `;         
+  `<option value = "${optionNombre[k]}">${optionNombre[k]}  </option> `;         
 }
 
 //selection id quantité
