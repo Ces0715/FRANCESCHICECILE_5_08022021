@@ -29,7 +29,8 @@ produitPanier.innerHTML = panierVide;
                 <p id="price">Prix: ${produitLocal[l].price} €</p> 
                 <p id = "couleur" >Couleur : ${produitLocal[l].option_couleur}</p>
                 <p id = "quantité" >Quantité : ${produitLocal[l].option_quantité}</p>
-                <p id = "supArticle" >Supprimer l'article </p>
+                
+                <button class="btn-supprimer">Supprimer </button>
 
             </div>
             <div class="col-sm-6 col-lg-6 themed-grid-col">  
@@ -42,6 +43,26 @@ produitPanier.innerHTML = panierVide;
 //if(l == produitLocal.length){
     // injection html dans la page panier
     produitPanier.innerHTML = structureProduitPanier;
-
     } 
 //}
+//------------fin affichage produits panier--------------
+
+// ------------bouton supprimer l'article--------------
+//selection des references des boutons btn-supprimer
+
+let btn_supprimer = document.querySelectorAll(".btn-supprimer");
+console.log(btn_supprimer);
+
+for (let m = 0; m < btn_supprimer.length; m++){
+    btn_supprimer[m].addEventListener("click" ,(event) =>{
+event.preventDefault();
+
+// selection id qui va etre supprimer en cliquant sur le bouton
+let id_select_suppression = produitLocal[m].id;
+console.log("id_select_suppression");
+console.log(id_select_suppression);
+
+    })
+
+}
+
