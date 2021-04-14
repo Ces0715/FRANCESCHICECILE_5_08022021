@@ -45,7 +45,9 @@ produitPanier.innerHTML = panierVide;
     produitPanier.innerHTML = structureProduitPanier;
     } 
 //}
-//------------fin affichage produits panier--------------
+
+
+//------------------------------fin affichage produits panier--------------------------------------------------
 
 // ------------bouton supprimer l'article--------------
 //selection des references des boutons btn-supprimer
@@ -62,6 +64,15 @@ let id_select_suppression = produitLocal[m].id;
 console.log("id_select_suppression");
 console.log(id_select_suppression);
 
+//methode filter pour selectionner ce qu il faut garder et sup le reste
+produitLocal = produitLocal.filter( el => el.id !== id_select_suppression);
+    console.log(produitLocal);
+   
+// on envoie la variable dans le local storage
+// transformation en format JSON et envoi dans la key "produit" du local Storage
+localStorage.setItem("produit", JSON.stringify(produitLocal));
+
+    
     })
 
 }

@@ -10,6 +10,7 @@ const id = urlSearchParams.get("id");
 const response = fetch (`http://localhost:3000/api/teddies/${id}`);
 response.then(async(data)=>{
     const article = await data.json();
+ 
 
     afficherProduit(article);
     function afficherProduit(article){  
@@ -83,7 +84,7 @@ btnPanier.addEventListener("click",(event)=>{
 //recuperation valeur du formulaire
 let optionsProduit = {
   name: article.name,
-  id:article._id,
+  id:article.id,
   price:article.price /100,
   option_couleur:choixForm,
   option_quantité:choixForm2,
