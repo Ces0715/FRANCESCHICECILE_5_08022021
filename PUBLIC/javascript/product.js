@@ -10,11 +10,9 @@ const id = urlSearchParams.get("id");
 const response = fetch (`http://localhost:3000/api/teddies/${id}`);
 response.then(async(data)=>{
     const article = await data.json();
- 
 
-    afficherProduit(article);
-    function afficherProduit(article){  
-    
+ afficherProduit(article);
+ function afficherProduit(article){     
 //preparation structure HTML pour affichage produit
 document.getElementById("produit").innerHTML += 
 `<div class="row mb-3">     
@@ -39,7 +37,7 @@ document.getElementById("produit").innerHTML +=
       <button id ="btn-envoyer" type="submit name="btn-envoyer">Ajouter au panier</button>
     </div> `;
   }
-//---------------------------------------le formulaire d adapteau nob d option----------
+//---------------------------------------le formulaire d adapteau nb d option----------
 
 //adapter le formulaire au nombre d'options couleurs du produit
 const optionCouleur = article.colors;
@@ -89,10 +87,8 @@ let optionsProduit = {
   option_couleur:choixForm,
   option_quantité:choixForm2,
   }
-console.log(optionsProduit);
 
-
-// LOCAL STORAGE
+//--------------------------- LOCAL STORAGE-------------------------------------------------
 //declaration variable pour mettre key et value dans le local storage
 let produitLocal = JSON.parse(localStorage.getItem("produit"));
 

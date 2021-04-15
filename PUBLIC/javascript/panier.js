@@ -6,8 +6,9 @@ console.log(produitLocal);
 const produitPanier = document.querySelector("#panier");
 
 
+let structureProduitPanier =[];
 // si panier vide..afficher "panier vide"(=== null)
-if(produitLocal=== null){
+if(produitLocal=== null ||produitLocal==0 ){
     const panierVide = 
 `<div class=" col-sm-6 col-lg-6 themed-grid-col">
     <h2> Le panier est vide</h2>
@@ -17,23 +18,18 @@ produitPanier.innerHTML = panierVide;
 
 } else{
     // si panier pas vide : afficher produits dans local storage
-    let structureProduitPanier =[];
+    
     
     for (let l= 0; l < produitLocal.length; l++) {
         //console.log(produitLocal.length);  
   structureProduitPanier += 
         `<div class="row mb-3">     
-            <div class=" col-sm-6 col-lg-6 themed-grid-col"> 
-                
+            <div class=" col-sm-6 col-lg-6 themed-grid-col">    
                 <h2 id="name">${produitLocal[l].name}</h2> 
                 <p id="price">Prix: ${produitLocal[l].price} €</p> 
                 <p id = "couleur" >Couleur : ${produitLocal[l].option_couleur}</p>
-                <p id = "quantité" >Quantité : ${produitLocal[l].option_quantité}</p>
-              
-               
-                
+                <p id = "quantité" >Quantité : ${produitLocal[l].option_quantité}</p>  
                 <button class="btn-supprimer">Supprimer </button>
-
             </div>
             <div class="col-sm-6 col-lg-6 themed-grid-col">  
                 <h2 id = "montant"> Montant total :</h2>
@@ -47,11 +43,10 @@ produitPanier.innerHTML = panierVide;
     produitPanier.innerHTML = structureProduitPanier;
     } 
 //}
-
-
 //------------------------------fin affichage produits panier--------------------------------------------------
 
-// ------------bouton supprimer l'article--------------
+
+// ---------------------creer bouton supprimer l'article----------------------------------------
 //selection des references des boutons btn-supprimer
 
 let btn_supprimer = document.querySelectorAll(".btn-supprimer");
@@ -72,10 +67,20 @@ produitLocal = produitLocal.filter( el => el.id !== id_select_suppression);
    
 // on envoie la variable dans le local storage
 // transformation en format JSON et envoi dans la key "produit" du local Storage
-localStorage.setItem("produit", JSON.stringify(produitLocal));
+localStorage.setItem("produit", JSON.stringify(produitLocal)
+);  
 
-    
-    })
-
+// creer alerte pour avertir de la suppression du produit et rechargement de la page
+alert("produit supprimé du panier");
+window.location.href = "panier.html";
+ })
 }
 
+//------------BOUTON POUR VIDER COMPLETEMENT LE PANIER----------------
+// code HTML du bouton
+const btn_tout_supprimer = `
+<button class = "btn_tout_supprimer"> Vider le panier</button>
+`;
+
+//insertion du bouton dans HTML du panier
+produitPanier.insertAdjacentHTML("beforeend",btn_tout_supprimer);
