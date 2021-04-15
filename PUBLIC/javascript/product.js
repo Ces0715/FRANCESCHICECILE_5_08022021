@@ -84,7 +84,7 @@ btnPanier.addEventListener("click",(event)=>{
 //recuperation valeur du formulaire
 let optionsProduit = {
   name: article.name,
-  id:article.id,
+  id:article._id,
   price:article.price /100,
   option_couleur:choixForm,
   option_quantité:choixForm2,

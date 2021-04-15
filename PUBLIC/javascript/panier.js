@@ -29,6 +29,8 @@ produitPanier.innerHTML = panierVide;
                 <p id="price">Prix: ${produitLocal[l].price} €</p> 
                 <p id = "couleur" >Couleur : ${produitLocal[l].option_couleur}</p>
                 <p id = "quantité" >Quantité : ${produitLocal[l].option_quantité}</p>
+              
+               
                 
                 <button class="btn-supprimer">Supprimer </button>
 
