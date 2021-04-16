@@ -23,15 +23,12 @@ produitPanier.innerHTML = panierVide;
     for (let l= 0; l < produitLocal.length; l++) {
         //console.log(produitLocal.length);  
   structureProduitPanier += 
-        `<div class="row mb-3">  
-        <div class=" col-12">   quantité1 -${produitLocal[l].name}-${produitLocal[l].price}-${produitLocal[l].option_couleur}-${produitLocal[l].option_quantité}-
-        </div>
-        </div>
+        `
         
-
+        <div class="row mb-3">
         <div class=" col-12">    
-                <h2 id="name">${produitLocal[l].name}</h2> 
-                <p id="price">Prix: ${produitLocal[l].price} €</p> 
+                <p id="name">Nom du produit :${produitLocal[l].name}</p> 
+                <p id="price">Prix: ${produitLocal[l].price} €</p>  
                 <p id = "couleur" >Couleur : ${produitLocal[l].option_couleur}</p>
                 <p id = "quantité" >Quantité : ${produitLocal[l].option_quantité}</p>  
                 <button class="btn-supprimer">Supprimer </button>
@@ -128,3 +125,63 @@ const affichPrixTotal = `
 `
 //injection HTML dans page panier
 produitPanier.insertAdjacentHTML("beforeend", affichPrixTotal);
+
+
+//afficher formulaire
+const afficherFormulaire = ()=>{
+
+    //selection element DOM pour positionner le formulaire
+const formulaire = document.querySelector("#formulaire");
+ const structureFormulaire = 
+ `<div id="formulaire">
+            <h2>Remplir le formulaire pour valider la commande</h2>
+            <form class="border p-5">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="nom">Nom</label>
+                            <input id="nom" class="form-control" type="text" name="" placeholder="Entrer votre nom">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="prenom">Prénom</label>
+                            <input id="prenom" class="form-control" type="text" name="" placeholder="Entrer votre prénom">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="mail">Mail</label>
+                            <input id="mail" class="form-control" type="text" name="" placeholder="Entrer votre mail">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="numéro">Numéro</label>
+                            <input id="numéro" class="form-control" type="text" name="" placeholder="Entrer votre numéro">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="mail">Adresse</label>
+                            <input id="adresse" class="form-control" type="text" name="" placeholder="Entrer votre adresse">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="ville">Code postal</label>
+                            <input id="code postal" class="form-control" type="text" name="" placeholder="Entrer le code postal">
+
+                            <label for="ville">Ville</label>
+                            <input id="ville" class="form-control" type="text" name="" placeholder="Entrer la ville">
+                        </div>
+                    </div>
+                </div> 
+                <button id ="envoyerFormulaire" type = "submit" name="envoyerFormulaire">Confirmation de commande</button>
+            </form>
+        </div>
+        </div>`;
+
+//injection HTML
+formulaire.insertAdjacentHTML("afterend",structureFormulaire);
+};
+//affichage du formulaire
+afficherFormulaire();
