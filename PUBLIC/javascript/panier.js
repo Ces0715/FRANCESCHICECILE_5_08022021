@@ -84,3 +84,21 @@ const btn_tout_supprimer = `
 
 //insertion du bouton dans HTML du panier
 produitPanier.insertAdjacentHTML("beforeend",btn_tout_supprimer);
+
+//selection reference du bouton
+const btn_sup = document.querySelector(".btn_tout_supprimer");
+console.log(btn_sup);
+
+// ------suppression key "produit" du localstorage--------
+btn_sup.addEventListener('click', (e) => { e.preventDefault;
+
+    //.removeItem pour vider localstorage
+    localStorage.removeItem("produit");
+    alert("le panier est vidé");
+
+    //rechargement page
+    window.location.href="panier.html";
+});
+
+
+//---------------FIN POUR LE BOUTON-------------------
