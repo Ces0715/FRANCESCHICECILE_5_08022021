@@ -33,7 +33,7 @@ produitPanier.innerHTML = panierVide;
             </div>
             <div class="col-sm-6 col-lg-6 themed-grid-col">  
                 <h2 id = "montant"> Montant total :</h2>
-                <p>Vider le panier</p>
+                
             </div>   
         </div>  `;            
 }
@@ -99,6 +99,30 @@ btn_sup.addEventListener('click', (e) => { e.preventDefault;
     //rechargement page
     window.location.href="panier.html";
 });
+//---------------FIN POUR LE BOUTON-------------------------
 
+//***********MONTANT TOTAL********************* */
 
-//---------------FIN POUR LE BOUTON-------------------
+// variable pour mettre les prix qui sont dans le panier
+let prixTotal = [];
+
+// chercher les prix du panier avec boucle 
+for (let n = 0; n < produitLocal.length; n ++){
+    let prixProduitsPanier = produitLocal[n].price;
+
+// mettre prix dans variable "prixTotal"
+prixTotal.push(prixProduitsPanier)
+}
+
+// addition des prix -- methode reduce
+const reducer = (accumulator,currentValue)=> accumulator+currentValue;
+console.log(reducer);
+const total = prixTotal.reduce(reducer);
+console.log(total);
+
+// code HTML pour afficher prix total
+const affichPrixTotal = `
+<div class = "prix_total"> Prix total :${total}€ </div>
+`
+//injection HTML dans page panier
+produitPanier.insertAdjacentHTML("beforeend", affichPrixTotal);
