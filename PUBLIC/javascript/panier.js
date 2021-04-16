@@ -24,14 +24,14 @@ produitPanier.innerHTML = panierVide;
         //console.log(produitLocal.length);  
   structureProduitPanier += 
         `<div class="row mb-3">     
-            <div class=" col-sm-6 col-lg-6 themed-grid-col">    
+            <div class=" col-12">    
                 <h2 id="name">${produitLocal[l].name}</h2> 
                 <p id="price">Prix: ${produitLocal[l].price} €</p> 
                 <p id = "couleur" >Couleur : ${produitLocal[l].option_couleur}</p>
                 <p id = "quantité" >Quantité : ${produitLocal[l].option_quantité}</p>  
                 <button class="btn-supprimer">Supprimer </button>
             </div>
-            <div class="col-sm-6 col-lg-6 themed-grid-col">  
+            <div class="col-12">  
                 <h2 id = "montant"> Montant total :</h2>
                 
             </div>   
