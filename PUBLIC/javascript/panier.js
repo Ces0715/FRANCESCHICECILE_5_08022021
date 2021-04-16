@@ -1,10 +1,11 @@
+
+
 //declaration variable pour mettre key et value dans le local storage
 let produitLocal = JSON.parse(localStorage.getItem("produit"));
 console.log(produitLocal);
 
 // affichage produits panier-- selection classe ou injection code html
 const produitPanier = document.querySelector("#panier");
-
 
 let structureProduitPanier =[];
 // si panier vide..afficher "panier vide"(=== null)
@@ -13,27 +14,21 @@ if(produitLocal=== null ||produitLocal==0 ){
 `<div class=" col-sm-6 col-lg-6 themed-grid-col">
     <h2> Le panier est vide</h2>
 </div>`;
-
 produitPanier.innerHTML = panierVide;
 
 } else{
     // si panier pas vide : afficher produits dans local storage
-    
-    
     for (let l= 0; l < produitLocal.length; l++) {
         //console.log(produitLocal.length);  
   structureProduitPanier += 
-        `
-        
-        <div class="row mb-3">
+        ` <div class="row mb-3">
         <div class=" col-12">    
                 <p id="name">Nom du produit :${produitLocal[l].name}</p> 
                 <p id="price">Prix: ${produitLocal[l].price} €</p>  
                 <p id = "couleur" >Couleur : ${produitLocal[l].option_couleur}</p>
                 <p id = "quantité" >Quantité : ${produitLocal[l].option_quantité}</p>  
                 <button class="btn-supprimer">Supprimer </button>
-            </div>
-              
+            </div>      
         </div>  `;            
 }
 
@@ -77,9 +72,8 @@ window.location.href = "panier.html";
 
 //------------BOUTON POUR VIDER COMPLETEMENT LE PANIER----------------
 // code HTML du bouton
-const btn_tout_supprimer = `
-<button class = "btn_tout_supprimer"> Vider le panier</button>
-`;
+const btn_tout_supprimer = 
+`<button class = "btn_tout_supprimer"> Vider le panier</button>`;
 
 //insertion du bouton dans HTML du panier
 produitPanier.insertAdjacentHTML("beforeend",btn_tout_supprimer);
@@ -94,7 +88,6 @@ btn_sup.addEventListener('click', (e) => { e.preventDefault;
     //.removeItem pour vider localstorage
     localStorage.removeItem("produit");
     alert("le panier est vidé");
-
     //rechargement page
     window.location.href="panier.html";
 });
@@ -112,7 +105,6 @@ for (let n = 0; n < produitLocal.length; n ++){
 // mettre prix dans variable "prixTotal"
 prixTotal.push(prixProduitsPanier)
 }
-
 // addition des prix -- methode reduce
 const reducer = (accumulator,currentValue)=> accumulator+currentValue;
 console.log(reducer);
@@ -120,16 +112,13 @@ const total = prixTotal.reduce(reducer);
 console.log(total);
 
 // code HTML pour afficher prix total
-const affichPrixTotal = `
-<div class = "prix_total"> Prix total :${total}€ </div>
-`
+const affichPrixTotal = `<div class = "prix_total"> Prix total :${total}€ </div>`
 //injection HTML dans page panier
 produitPanier.insertAdjacentHTML("beforeend", affichPrixTotal);
 
 
 //afficher formulaire
 const afficherFormulaire = ()=>{
-
     //selection element DOM pour positionner le formulaire
 const formulaire = document.querySelector("#formulaire");
  const structureFormulaire = 
@@ -155,8 +144,8 @@ const formulaire = document.querySelector("#formulaire");
                             <input id="mail" class="form-control" type="text" name="" placeholder="Entrer votre mail">
                         </div>
                         <div class="col-md-6">
-                            <label for="numéro">Numéro</label>
-                            <input id="numéro" class="form-control" type="text" name="" placeholder="Entrer votre numéro">
+                            <label for="numero">Numéro</label>
+                            <input id="numero" class="form-control" type="text" name="" placeholder="Entrer votre numéro">
                         </div>
                     </div>
                 </div>
@@ -168,7 +157,7 @@ const formulaire = document.querySelector("#formulaire");
                         </div>
                         <div class="col-md-6">
                             <label for="ville">Code postal</label>
-                            <input id="code postal" class="form-control" type="text" name="" placeholder="Entrer le code postal">
+                            <input id="codepostal" class="form-control" type="text" name="" placeholder="Entrer le code postal">
 
                             <label for="ville">Ville</label>
                             <input id="ville" class="form-control" type="text" name="" placeholder="Entrer la ville">
@@ -185,3 +174,31 @@ formulaire.insertAdjacentHTML("afterend",structureFormulaire);
 };
 //affichage du formulaire
 afficherFormulaire();
+
+// selection bouton envoyer formulaire-----------
+const btnEnvoyerFormulaire = document.querySelector("#envoyerFormulaire");
+
+//----------------addEventlistener pour afficher------------
+btnEnvoyerFormulaire.addEventListener("click",(e) =>
+{ e.preventDefault();
+    //recuperer valeur pour les inserer dans local storage
+localStorage.setItem("nom",document.querySelector("#nom").value);
+localStorage.setItem("prenom",document.querySelector("#prenom").value);
+localStorage.setItem("mail",document.querySelector("#mail").value);
+localStorage.setItem("numero",document.querySelector("#numero").value);
+localStorage.setItem("adresse",document.querySelector("#adresse").value);
+localStorage.setItem("codepostal",document.querySelector("#codepostal").value);
+localStorage.setItem("ville",document.querySelector("#ville").value);
+})
+
+// mettre les values du formulaire dans un objet
+const valeurFormulaire ={
+    nom : localStorage.getItem("nom"),
+    prenom : localStorage.getItem("prenom"),
+    mail : localStorage.getItem("mail"),
+    numero : localStorage.getItem("numero"),
+    adresse : localStorage.getItem("adresse"),
+    codepostal : localStorage.getItem("codepostal"),
+    ville : localStorage.getItem("ville"),
+}
+console.log(valeurFormulaire);
