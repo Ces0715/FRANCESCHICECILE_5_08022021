@@ -7,117 +7,131 @@ const id = urlSearchParams.get("id");
 
 //affichage du produit selectionné par son id
 //methode 1 avec fetch en mettant l'id a la fin de l url
-const response = fetch (`http://localhost:3000/api/teddies/${id}`);
-response.then(async(data)=>{
-    const article = await data.json();
+const response = fetch(`http://localhost:3000/api/teddies/${id}`);
+response.then(async (data) => {
+  const article = await data.json();
 
- afficherProduit(article);
- function afficherProduit(article){     
-//preparation structure HTML pour affichage produit
-document.getElementById("produit").innerHTML += 
-`<div class="row mb-3">     
-    <div class=" col-sm-6 col-lg-6 themed-grid-col"> 
-      <h2 id="name">${article.name}</h2> 
-      <p id="id">Reférence:${article._id}</p>
-      <p id="price">Prix: ${article.price/100} €</p> 
-      <form>
-        <label for ="option_couleur"> Choisir la couleur:
-          <select name="choix" id="option_couleur" > </select>
-        </label> 
-      </form>
-      <form>
-        <label for ="option_quantité"> Choisir la quantité :
-          <select name ="quantity" id ="option_quantité"></select> 
-        </label>
-      </form>
-    </div>
-    <div class="col-sm-6 col-lg-6 themed-grid-col"> 
-      <a href="./panier.html?id=${'_id'}">
-      <img width="300"  src = "${article.imageUrl}">
-      <button id ="btn-envoyer" type="submit name="btn-envoyer">Ajouter au panier</button>
-    </div> `;
-  }
-//---------------------------------------le formulaire d adapteau nb d option----------
+  afficherProduit(article);
+  
+  //---------------------------------------le formulaire d adapteau nb d option-------------------
 
-//adapter le formulaire au nombre d'options couleurs du produit
-const optionCouleur = article.colors;
-let structureOptions = "";
+  //adapter le formulaire au nombre d'options couleurs du produit
+ afficherCouleur(article) ;
+  
+ afficherQuantite();
 
-// boucle for pour afficher options couleur
-for(let j = 0; j < optionCouleur.length; j++){
-  structureOptions +=  `<option value = "${optionCouleur[j]}">${optionCouleur[j]}  </option> `;         
-}
-//selection id des couleurs
-const choixCouleur = document.querySelector("#option_couleur");
+  //choisir nombre
+  //let optionNombre = ['1', '2', '3', '4', '5'];
+  
 
-//mettre choix de l utilisateur dans une variable
-choixCouleur.innerHTML = structureOptions;       
+  //selection bouton pour l'ajout au panier
+  const btnPanier = document.querySelector("#btn-envoyer");
 
-//choisir nombre
-let optionNombre = ['1', '2', '3', '4', '5'];
-let structureNombre =[];
-//console.log(structureNombre);
-for (let k = 0; k < optionNombre.length; k++){
-  structureNombre += 
-  `<option value = "${optionNombre[k]}">${optionNombre[k]}  </option> `;         
-}
+  //ecouter le bouton et envoyer au panier
+  btnPanier.addEventListener("click", (event) => {
+    event.preventDefault();
+    btnPanier.innerHTML = "cliqué";
 
-//selection id quantité
-const choixNombre = document.querySelector("#option_quantité");
-choixNombre.innerHTML = structureNombre;
+    const choixCouleur = document.querySelector("#option_couleur");
+    const choixForm = choixCouleur.value;
+  
+    const choixNombre = document.querySelector("#option_quantité");
+    const choixForm2 = choixNombre.value;
+    
 
-//selection bouton pour l'ajout au panier
-const btnPanier = document.querySelector("#btn-envoyer");
+    //recuperation valeur du formulaire
+    let optionsProduit = {
+      name: article.name,
+      id: article._id,
+      price: article.price / 100,
+      option_couleur: choixForm,
+      option_quantité: choixForm2,
+    }
 
-//ecouter le bouton et envoyer au panier
-btnPanier.addEventListener("click",(event)=>{
-  event.preventDefault();
-  btnPanier.innerHTML = "cliqué";
+    //--------------------------- LOCAL STORAGE-------------------------------------------------
+    //declaration variable pour mettre key et value dans le local storage
+    let produitLocal = JSON.parse(localStorage.getItem("produit"));
 
-  const choixForm = choixCouleur.value;
-  console.log(choixForm);
-  const choixForm2 = choixNombre.value;
-  console.log(choixForm2);
+    //fonction fenetre pop up
+    const popupConfirm = () => {
+      if (window.confirm(`${article.name}option :${choixForm} ajouté au panier Consultez le panier ou retour accueil`)) {
+        window.location.href = "panier.html";
+      }
+      else {
+        window.location.href = "index.html"
+      }
+    }
+    //fonction ajout du produit selectionné dans le localStorage
+    const ajoutProduitLocalStorage = () => {
+      produitLocal.push(optionsProduit);
 
-//recuperation valeur du formulaire
-let optionsProduit = {
-  name: article.name,
-  id:article._id,
-  price:article.price /100,
-  option_couleur:choixForm,
-  option_quantité:choixForm2,
-  }
+      // transformation en format JSON et envoi dans la key "produit" du local Storage
+      localStorage.setItem("produit", JSON.stringify(produitLocal));
+    };
 
-//--------------------------- LOCAL STORAGE-------------------------------------------------
-//declaration variable pour mettre key et value dans le local storage
-let produitLocal = JSON.parse(localStorage.getItem("produit"));
-
-//fonction fenetre pop up
-const popupConfirm = () =>{
-  if(window.confirm( `${article.name}option :${choixForm} ajouté au panier Consultez le panier ou retour accueil` )){
-    window.location.href = "panier.html";
-  }
-  else{
-    window.location.href = "index.html"
-  }
-}
-//fonction ajout du produit selectionné dans le localStorage
-const ajoutProduitLocalStorage =() =>{
-  produitLocal.push(optionsProduit);  
-// transformation en format JSON et envoi dans la key "produit" du local Storage
-localStorage.setItem("produit", JSON.stringify(produitLocal));
-};
-
-//si produits deja dans local storage
-if(produitLocal){
-  ajoutProduitLocalStorage();
-  popupConfirm();
-}
-//si pas de produits
-else{
-  produitLocal =[];
-  ajoutProduitLocalStorage();
-  popupConfirm();
-}
-}) 
+    //si produits deja dans local storage
+    if (produitLocal) {  
+    }
+    //si pas de produits
+    else {
+      produitLocal = [];
+   
+    }
+    ajoutProduitLocalStorage();
+    popupConfirm();
+  })
 });
+
+function afficherProduit(article) {
+  //preparation structure HTML pour affichage produit
+  document.getElementById("produit").innerHTML +=
+    `<div class="row mb-3">     
+  <div class=" col-sm-6 col-lg-6 themed-grid-col"> 
+    <h2 id="name">${article.name}</h2> 
+    <p id="id">Reférence:${article._id}</p>
+    <p id="price">Prix: ${article.price / 100} €</p> 
+    <form>
+      <label for ="option_couleur"> Choisir la couleur:
+        <select name="choix" id="option_couleur" > </select>
+      </label> 
+    </form>
+    <form>
+      <label for ="option_quantité"> Choisir la quantité :
+        <select name ="quantity" id ="option_quantité"></select> 
+      </label>
+    </form>
+  </div>
+  <div class="col-sm-6 col-lg-6 themed-grid-col"> 
+    <a href="./panier.html?id=${'_id'}">
+    <img width="300"  src = "${article.imageUrl}">
+    <button id ="btn-envoyer" type="submit name="btn-envoyer">Ajouter au panier</button>
+  </div> `;
+}
+
+function afficherCouleur(article) {
+  const optionCouleur = article.colors;
+  let structureOptions = "";
+
+  // boucle for pour afficher options couleur
+  for (let j = 0; j < optionCouleur.length; j++) {
+    structureOptions += `<option value = "${optionCouleur[j]}">${optionCouleur[j]}  </option> `;
+  }
+  //selection id des couleurs
+  const choixCouleur = document.querySelector("#option_couleur");
+
+  //mettre choix de l utilisateur dans une variable
+  choixCouleur.innerHTML = structureOptions;
+}
+
+function afficherQuantite(){
+  let structureNombre = [];
+  //console.log(structureNombre);
+  for (let k = 1; k < 10; k++) {
+    structureNombre +=
+      `<option value = "${k}">${k}  </option> `;
+  }
+
+  //selection id quantité
+  const choixNombre = document.querySelector("#option_quantité");
+  choixNombre.innerHTML = structureNombre;
+}

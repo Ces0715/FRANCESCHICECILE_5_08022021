@@ -1,5 +1,3 @@
-
-
 //declaration variable pour mettre key et value dans le local storage
 let produitLocal = JSON.parse(localStorage.getItem("produit"));
 console.log(produitLocal);
@@ -19,7 +17,7 @@ produitPanier.innerHTML = panierVide;
 } else{
     // si panier pas vide : afficher produits dans local storage
     for (let l= 0; l < produitLocal.length; l++) {
-        //console.log(produitLocal.length);  
+         
   structureProduitPanier += 
         ` <div class="row mb-3">
         <div class=" col-12">    
@@ -30,17 +28,14 @@ produitPanier.innerHTML = panierVide;
                 <button class="btn-supprimer">Supprimer </button>
             </div>      
         </div>  `;            
-}
+    }
+produitPanier.innerHTML = structureProduitPanier;
+} 
 
-//if(l == produitLocal.length){
-    // injection html dans la page panier
-    produitPanier.innerHTML = structureProduitPanier;
-    } 
-//}
 //------------------------------fin affichage produits panier--------------------------------------------------
 
 
-// ---------------------creer bouton supprimer l'article----------------------------------------
+// ---------------------CREATION BOUTON SUPPRIMER L ARTICLE----------------------------------------
 //selection des references des boutons btn-supprimer
 
 let btn_supprimer = document.querySelectorAll(".btn-supprimer");
@@ -48,29 +43,27 @@ console.log(btn_supprimer);
 
 for (let m = 0; m < btn_supprimer.length; m++){
     btn_supprimer[m].addEventListener("click" ,(event) =>{
-event.preventDefault();
+    event.preventDefault();
 
 // selection id qui va etre supprimer en cliquant sur le bouton
 let id_select_suppression = produitLocal[m].id;
 console.log("id_select_suppression");
 console.log(id_select_suppression);
 
-//methode filter pour selectionner ce qu il faut garder et sup le reste
+//methode filter pour selectionner ce qu il faut garder et suprimer le reste
 produitLocal = produitLocal.filter( el => el.id !== id_select_suppression);
-    console.log(produitLocal);
    
 // on envoie la variable dans le local storage
 // transformation en format JSON et envoi dans la key "produit" du local Storage
-localStorage.setItem("produit", JSON.stringify(produitLocal)
-);  
+localStorage.setItem ("produit", JSON.stringify(produitLocal));  
 
 // creer alerte pour avertir de la suppression du produit et rechargement de la page
 alert("produit supprimé du panier");
 window.location.href = "panier.html";
- })
+})
 }
 
-//------------BOUTON POUR VIDER COMPLETEMENT LE PANIER----------------
+//-------------------BOUTON POUR VIDER COMPLETEMENT LE PANIER--------------------------
 // code HTML du bouton
 const btn_tout_supprimer = 
 `<button class = "btn_tout_supprimer"> Vider le panier</button>`;
@@ -80,20 +73,19 @@ produitPanier.insertAdjacentHTML("beforeend",btn_tout_supprimer);
 
 //selection reference du bouton
 const btn_sup = document.querySelector(".btn_tout_supprimer");
-console.log(btn_sup);
 
 // ------suppression key "produit" du localstorage--------
 btn_sup.addEventListener('click', (e) => { e.preventDefault;
-
     //.removeItem pour vider localstorage
     localStorage.removeItem("produit");
     alert("le panier est vidé");
     //rechargement page
     window.location.href="panier.html";
 });
-//---------------FIN POUR LE BOUTON-------------------------
 
-//***********MONTANT TOTAL********************* */
+//----------------------------FIN POUR LE BOUTON------------------------------------------
+
+//-------------------------------MONTANT TOTAL------------------------------------------------
 
 // variable pour mettre les prix qui sont dans le panier
 let prixTotal = [];
@@ -105,17 +97,15 @@ for (let n = 0; n < produitLocal.length; n ++){
 // mettre prix dans variable "prixTotal"
 prixTotal.push(prixProduitsPanier)
 }
+
 // addition des prix -- methode reduce
 const reducer = (accumulator,currentValue)=> accumulator+currentValue;
-console.log(reducer);
 const total = prixTotal.reduce(reducer);
-console.log(total);
 
 // code HTML pour afficher prix total
 const affichPrixTotal = `<div class = "prix_total"> Prix total :${total}€ </div>`
 //injection HTML dans page panier
 produitPanier.insertAdjacentHTML("beforeend", affichPrixTotal);
-
 
 //afficher formulaire
 const afficherFormulaire = ()=>{
@@ -169,7 +159,7 @@ const formulaire = document.querySelector("#formulaire");
         </div>
         </div>`;
 
-//injection HTML
+//injection HTML du formulaire
 formulaire.insertAdjacentHTML("afterend",structureFormulaire);
 };
 //affichage du formulaire
