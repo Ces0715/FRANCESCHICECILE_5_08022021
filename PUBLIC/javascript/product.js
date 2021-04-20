@@ -12,21 +12,13 @@ response.then(async (data) => {
   const article = await data.json();
 
   afficherProduit(article);
-  
-  //---------------------------------------le formulaire d adapteau nb d option-------------------
 
   //adapter le formulaire au nombre d'options couleurs du produit
- afficherCouleur(article) ;
-  
- afficherQuantite();
-
-  //choisir nombre
-  //let optionNombre = ['1', '2', '3', '4', '5'];
-  
+  afficherCouleur(article);
+  afficherQuantite();
 
   //selection bouton pour l'ajout au panier
   const btnPanier = document.querySelector("#btn-envoyer");
-
   //ecouter le bouton et envoyer au panier
   btnPanier.addEventListener("click", (event) => {
     event.preventDefault();
@@ -34,10 +26,8 @@ response.then(async (data) => {
 
     const choixCouleur = document.querySelector("#option_couleur");
     const choixForm = choixCouleur.value;
-  
     const choixNombre = document.querySelector("#option_quantité");
     const choixForm2 = choixNombre.value;
-    
 
     //recuperation valeur du formulaire
     let optionsProduit = {
@@ -58,25 +48,20 @@ response.then(async (data) => {
         window.location.href = "panier.html";
       }
       else {
-        window.location.href = "index.html"
+        window.location.href = "index.html";
       }
     }
-    //fonction ajout du produit selectionné dans le localStorage
+    //FACTORISATION DU CODE :fonction ajout du produit selectionné dans le localStorage
     const ajoutProduitLocalStorage = () => {
       produitLocal.push(optionsProduit);
-
       // transformation en format JSON et envoi dans la key "produit" du local Storage
       localStorage.setItem("produit", JSON.stringify(produitLocal));
     };
-
-    //si produits deja dans local storage
-    if (produitLocal) {  
+    //si produits deja enregistré dans local storage(if) sinon (else)
+    if (produitLocal) {
     }
-    //si pas de produits
-    else {
+    else
       produitLocal = [];
-   
-    }
     ajoutProduitLocalStorage();
     popupConfirm();
   })
@@ -118,12 +103,10 @@ function afficherCouleur(article) {
   }
   //selection id des couleurs
   const choixCouleur = document.querySelector("#option_couleur");
-
-  //mettre choix de l utilisateur dans une variable
   choixCouleur.innerHTML = structureOptions;
 }
 
-function afficherQuantite(){
+function afficherQuantite() {
   let structureNombre = [];
   //console.log(structureNombre);
   for (let k = 1; k < 10; k++) {

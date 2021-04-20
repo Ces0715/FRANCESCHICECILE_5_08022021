@@ -2,7 +2,7 @@
 let produitLocal = JSON.parse(localStorage.getItem("produit"));
 console.log(produitLocal);
 
-// affichage produits panier-- selection classe ou injection code html
+// affichage produits panier-- selection id ou injection code html
 const produitPanier = document.querySelector("#panier");
 
 let structureProduitPanier =[];
