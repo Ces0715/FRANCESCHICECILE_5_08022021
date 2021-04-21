@@ -27,10 +27,11 @@ produitPanier.innerHTML = panierVide;
                 <p id = "quantité" >Quantité : ${produitLocal[l].option_quantité}</p>  
                 <button class="btn-supprimer">Supprimer </button>
             </div>      
-        </div>  `;            
-    }
+        </div>  `;  
+     }                 
 produitPanier.innerHTML = structureProduitPanier;
 } 
+
 
 //------------------------------fin affichage produits panier--------------------------------------------------
 
@@ -93,6 +94,7 @@ let prixTotal = [];
 // chercher les prix du panier avec boucle 
 for (let n = 0; n < produitLocal.length; n ++){
     let prixProduitsPanier = produitLocal[n].price;
+    console.log(prixProduitsPanier);
 
 // mettre prix dans variable "prixTotal"
 prixTotal.push(prixProduitsPanier)

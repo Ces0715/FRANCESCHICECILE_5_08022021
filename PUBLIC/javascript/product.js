@@ -12,7 +12,6 @@ response.then(async (data) => {
   const article = await data.json();
 
   afficherProduit(article);
-
   //adapter le formulaire au nombre d'options couleurs du produit
   afficherCouleur(article);
   afficherQuantite();
@@ -33,7 +32,7 @@ response.then(async (data) => {
     let optionsProduit = {
       name: article.name,
       id: article._id,
-      price: article.price / 100,
+      price: (article.price*choixForm2) / 100,
       option_couleur: choixForm,
       option_quantité: choixForm2,
     }
