@@ -5,21 +5,21 @@ console.log(produitLocal);
 // affichage produits panier-- selection id ou injection code html
 const produitPanier = document.querySelector("#panier");
 
-let structureProduitPanier =[];
+let structureProduitPanier = [];
 // si panier vide..afficher "panier vide"(=== null)
-if(produitLocal=== null ||produitLocal==0 ){
-    const panierVide = 
-`<div class=" col-sm-6 col-lg-6 themed-grid-col">
+if (produitLocal === null || produitLocal == 0) {
+    const panierVide =
+        `<div class=" col-sm-6 col-lg-6 themed-grid-col">
     <h2> Le panier est vide</h2>
 </div>`;
-produitPanier.innerHTML = panierVide;
+    produitPanier.innerHTML = panierVide;
 
-} else{
+} else {
     // si panier pas vide : afficher produits dans local storage
-    for (let l= 0; l < produitLocal.length; l++) {
-         
-  structureProduitPanier += 
-        ` <div class="row mb-3">
+    for (let l = 0; l < produitLocal.length; l++) {
+
+        structureProduitPanier +=
+            ` <div class="row mb-3">
         <div class=" col-12">    
                 <p id="name">Nom du produit :${produitLocal[l].name}</p> 
                 <p id="price">Prix: ${produitLocal[l].price} €</p>  
@@ -27,10 +27,10 @@ produitPanier.innerHTML = panierVide;
                 <p id = "quantité" >Quantité : ${produitLocal[l].option_quantité}</p>  
                 <button class="btn-supprimer">Supprimer </button>
             </div>      
-        </div>  `;  
-     }                 
-produitPanier.innerHTML = structureProduitPanier;
-} 
+        </div>  `;
+    }
+    produitPanier.innerHTML = structureProduitPanier;
+}
 
 
 //------------------------------fin affichage produits panier--------------------------------------------------
@@ -42,46 +42,47 @@ produitPanier.innerHTML = structureProduitPanier;
 let btn_supprimer = document.querySelectorAll(".btn-supprimer");
 console.log(btn_supprimer);
 
-for (let m = 0; m < btn_supprimer.length; m++){
-    btn_supprimer[m].addEventListener("click" ,(event) =>{
-    event.preventDefault();
+for (let m = 0; m < btn_supprimer.length; m++) {
+    btn_supprimer[m].addEventListener("click", (event) => {
+        event.preventDefault();
 
-// selection id qui va etre supprimer en cliquant sur le bouton
-let id_select_suppression = produitLocal[m].id;
-console.log("id_select_suppression");
-console.log(id_select_suppression);
+        // selection id qui va etre supprimer en cliquant sur le bouton
+        let id_select_suppression = produitLocal[m].id;
+        console.log("id_select_suppression");
+        console.log(id_select_suppression);
 
-//methode filter pour selectionner ce qu il faut garder et suprimer le reste
-produitLocal = produitLocal.filter( el => el.id !== id_select_suppression);
-   
-// on envoie la variable dans le local storage
-// transformation en format JSON et envoi dans la key "produit" du local Storage
-localStorage.setItem ("produit", JSON.stringify(produitLocal));  
+        //methode filter pour selectionner ce qu il faut garder et suprimer le reste
+        produitLocal = produitLocal.filter(el => el.id !== id_select_suppression);
 
-// creer alerte pour avertir de la suppression du produit et rechargement de la page
-alert("produit supprimé du panier");
-window.location.href = "panier.html";
-})
+        // on envoie la variable dans le local storage
+        // transformation en format JSON et envoi dans la key "produit" du local Storage
+        localStorage.setItem("produit", JSON.stringify(produitLocal));
+
+        // creer alerte pour avertir de la suppression du produit et rechargement de la page
+        alert("produit supprimé du panier");
+        window.location.href = "panier.html";
+    })
 }
 
 //-------------------BOUTON POUR VIDER COMPLETEMENT LE PANIER--------------------------
 // code HTML du bouton
-const btn_tout_supprimer = 
-`<button class = "btn_tout_supprimer"> Vider le panier</button>`;
+const btn_tout_supprimer =
+    `<button class = "btn_tout_supprimer"> Vider le panier</button>`;
 
 //insertion du bouton dans HTML du panier
-produitPanier.insertAdjacentHTML("beforeend",btn_tout_supprimer);
+produitPanier.insertAdjacentHTML("beforeend", btn_tout_supprimer);
 
 //selection reference du bouton
 const btn_sup = document.querySelector(".btn_tout_supprimer");
 
 // ------suppression key "produit" du localstorage--------
-btn_sup.addEventListener('click', (e) => { e.preventDefault;
+btn_sup.addEventListener('click', (e) => {
+    e.preventDefault;
     //methode .removeItem pour vider localstorage
     localStorage.removeItem("produit");
     alert("le panier est vidé");
     //rechargement page
-    window.location.href="panier.html";
+    window.location.href = "panier.html";
 });
 
 //----------------------------FIN POUR LE BOUTON------------------------------------------
@@ -92,15 +93,15 @@ btn_sup.addEventListener('click', (e) => { e.preventDefault;
 let prixTotal = [];
 
 // chercher les prix du panier avec boucle for
-for (let n = 0; n < produitLocal.length; n ++){
+for (let n = 0; n < produitLocal.length; n++) {
     let prixProduitsPanier = produitLocal[n].price;
 
-// mettre prix dans variable "prixTotal"
-prixTotal.push(prixProduitsPanier)
+    // mettre prix dans variable "prixTotal"
+    prixTotal.push(prixProduitsPanier)
 }
 
 // addition des prix -- methode reduce
-const reducer = (accumulator,currentValue)=> accumulator+currentValue;
+const reducer = (accumulator, currentValue) => accumulator + currentValue;
 const total = prixTotal.reduce(reducer);
 
 // code HTML et injection pour afficher prix total
@@ -109,11 +110,11 @@ produitPanier.insertAdjacentHTML("beforeend", affichPrixTotal);
 
 //----------------afficher formulaire-----------------------
 
-const afficherFormulaire = ()=>{
+const afficherFormulaire = () => {
     //selection element DOM pour positionner le formulaire
-const formulaire = document.querySelector("#formulaire");
- const structureFormulaire = 
- `<div id="formulaire">
+    const formulaire = document.querySelector("#formulaire");
+    const structureFormulaire =
+        `<div id="formulaire">
             <h2>Remplir le formulaire pour valider la commande</h2>
             <form class="border p-5">
                 <div class="form-group">
@@ -160,61 +161,69 @@ const formulaire = document.querySelector("#formulaire");
         </div>
         </div>`;
 
-//injection HTML du formulaire
-formulaire.insertAdjacentHTML("afterend",structureFormulaire);
+    //injection HTML du formulaire
+    formulaire.insertAdjacentHTML("afterend", structureFormulaire);
 };
-//affichage du formulaire
+//appeler la fonction pour affichage du formulaire
 afficherFormulaire();
 
 // selection bouton envoyer formulaire-----------
 const btnEnvoyerFormulaire = document.querySelector("#envoyerFormulaire");
-
-
 //----------------addEventlistener pour afficher------------
-btnEnvoyerFormulaire.addEventListener("click",(e) =>
-{ e.preventDefault();
+btnEnvoyerFormulaire.addEventListener("click", (e) => {
+    e.preventDefault();
 
-// recuperation des valeurs du formulaire
-const formulaireValues ={
-    nom : document.querySelector("#nom").value,
-    prenom : document.querySelector("#prenom").value,
-    mail : document.querySelector("#mail").value,
-    numero : document.querySelector("#numero").value,
-    adresse : document.querySelector("#adresse").value,
-    codepostal : document.querySelector("#codepostal").value,
-    ville : document.querySelector("#ville").value,
-}
+    //CREATION CLASSE POUR CREER UN OBJET CONTENANT LES VALEURS DU FORMULAIRE
+    class Formulaire {
+        constructor() {
+            this.nom = document.querySelector("#nom").value;
+            this.prenom = document.querySelector("#prenom").value;
+            this.mail = document.querySelector("#mail").value;
+            this.numero = document.querySelector("#numero").value;
+            this.adresse = document.querySelector("#adresse").value;
+            this.codepostal = document.querySelector("#codepostal").value;
+            this.ville = document.querySelector("#ville").value;
+        }
+    }
+    // appel de l 'instance de classe Formulaire pour creer l'objet formulairevalues(recup des valeurs)
+    const formulaireValues = new Formulaire();
+    console.log(formulaireValues);
 
-    //recuperer valeur pour les inserer dans local storage
-//localStorage.setItem("nom",document.querySelector("#nom").value);
-//localStorage.setItem("prenom",document.querySelector("#prenom").value);
-//localStorage.setItem("mail",document.querySelector("#mail").value);
-//localStorage.setItem("numero",document.querySelector("#numero").value);
-//localStorage.setItem("adresse",document.querySelector("#adresse").value);
-//localStorage.setItem("codepostal",document.querySelector("#codepostal").value);
-//localStorage.setItem("ville",document.querySelector("#ville").value);
+    // recuperation des valeurs du formulaire
+    //const formulaireValues ={
+    //nom : document.querySelector("#nom").value,
+    // prenom : document.querySelector("#prenom").value,
+    // mail : document.querySelector("#mail").value,
+    // numero : document.querySelector("#numero").value,
+    //adresse : document.querySelector("#adresse").value,
+    //codepostal : document.querySelector("#codepostal").value,
+    //ville : document.querySelector("#ville").value,
+    //}
+    //******mettre l'objet formulaireValues dans le localstorage****** */
+    localStorage.setItem("formulaireValues", JSON.stringify(formulaireValues));
 
-//******mettre l'objet formulaireValues dans le localstorage****** */
-localStorage.setItem("formulaireValues", JSON.stringify(formulaireValues));
+    // value du formulaire et produits a mettre dans un objet pour l'envoyer au serveur
+    const aEnvoyer = {
+        produitLocal,
+        formulaireValues,
+    }
+    // envoyer l'objet aEnvoyer vers le serveur
+});
 
-// mettre les values du formulaire dans un objet
-//const valeurFormulaire ={
-    //nom : localStorage.getItem("nom"),
-    //prenom : localStorage.getItem("prenom"),
-    //mail : localStorage.getItem("mail"),
-    //numero : localStorage.getItem("numero"),
-    //adresse : localStorage.getItem("adresse"),
-    //codepostal : localStorage.getItem("codepostal"),
-    //ville : localStorage.getItem("ville"),
-//}
+//*******CONTENU DU LS DANS LES CHAMPS DU FORMULAIRE*********/
+// mettre la key du ls dans une variable
+const dataLocalStorage = localStorage.getItem("formulaireValues");
 
-// value du formulaire et produits a mettre dans un objet pour l'envoyer au serveur
-const aEnvoyer = {
-    produitLocal,
-    formulaireValues,
-}
-console.log(aEnvoyer);
+//convertir la chaine de caractere en objet JS
+const dataLocalStorageObject = JSON.parse(dataLocalStorage);
 
-// envoyer l'objet aEnvoyer vers le serveur
-})
+
+// mettre les value du ls dans les champs du formulaire
+document.querySelector("#nom").setAttribute('value',dataLocalStorageObject.nom);
+document.querySelector("#prenom").setAttribute('value',dataLocalStorageObject.prenom);
+document.querySelector("#mail").setAttribute('value',dataLocalStorageObject.mail);
+document.querySelector("#numero").setAttribute('value',dataLocalStorageObject.numero);
+document.querySelector("#adresse").setAttribute('value',dataLocalStorageObject.adresse);
+document.querySelector("#codepostal").setAttribute('value',dataLocalStorageObject.codepostal);
+document.querySelector("#ville").setAttribute('value',dataLocalStorageObject.ville);
 
