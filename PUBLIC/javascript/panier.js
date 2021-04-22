@@ -217,13 +217,16 @@ const dataLocalStorage = localStorage.getItem("formulaireValues");
 //convertir la chaine de caractere en objet JS
 const dataLocalStorageObject = JSON.parse(dataLocalStorage);
 
+//creer une fonction 
+
+
 
 // mettre les value du ls dans les champs du formulaire
-document.querySelector("#nom").setAttribute('value',dataLocalStorageObject.nom);
-document.querySelector("#prenom").setAttribute('value',dataLocalStorageObject.prenom);
-document.querySelector("#mail").setAttribute('value',dataLocalStorageObject.mail);
-document.querySelector("#numero").setAttribute('value',dataLocalStorageObject.numero);
-document.querySelector("#adresse").setAttribute('value',dataLocalStorageObject.adresse);
-document.querySelector("#codepostal").setAttribute('value',dataLocalStorageObject.codepostal);
-document.querySelector("#ville").setAttribute('value',dataLocalStorageObject.ville);
+//document.querySelector("#nom").setAttribute('value',dataLocalStorageObject.nom);
+//document.querySelector("#prenom").setAttribute('value',dataLocalStorageObject.prenom);
+//document.querySelector("#mail").setAttribute('value',dataLocalStorageObject.mail);
+//document.querySelector("#numero").setAttribute('value',dataLocalStorageObject.numero);
+//document.querySelector("#adresse").setAttribute('value',dataLocalStorageObject.adresse);
+//document.querySelector("#codepostal").setAttribute('value',dataLocalStorageObject.codepostal);
+//document.querySelector("#ville").setAttribute('value',dataLocalStorageObject.ville);
 
