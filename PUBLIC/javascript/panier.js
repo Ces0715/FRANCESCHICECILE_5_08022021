@@ -77,7 +77,7 @@ const btn_sup = document.querySelector(".btn_tout_supprimer");
 
 // ------suppression key "produit" du localstorage--------
 btn_sup.addEventListener('click', (e) => { e.preventDefault;
-    //.removeItem pour vider localstorage
+    //methode .removeItem pour vider localstorage
     localStorage.removeItem("produit");
     alert("le panier est vidé");
     //rechargement page
@@ -91,10 +91,9 @@ btn_sup.addEventListener('click', (e) => { e.preventDefault;
 // variable pour mettre les prix qui sont dans le panier
 let prixTotal = [];
 
-// chercher les prix du panier avec boucle 
+// chercher les prix du panier avec boucle for
 for (let n = 0; n < produitLocal.length; n ++){
     let prixProduitsPanier = produitLocal[n].price;
-    console.log(prixProduitsPanier);
 
 // mettre prix dans variable "prixTotal"
 prixTotal.push(prixProduitsPanier)
@@ -104,12 +103,12 @@ prixTotal.push(prixProduitsPanier)
 const reducer = (accumulator,currentValue)=> accumulator+currentValue;
 const total = prixTotal.reduce(reducer);
 
-// code HTML pour afficher prix total
+// code HTML et injection pour afficher prix total
 const affichPrixTotal = `<div class = "prix_total"> Prix total :${total}€ </div>`
-//injection HTML dans page panier
 produitPanier.insertAdjacentHTML("beforeend", affichPrixTotal);
 
-//afficher formulaire
+//----------------afficher formulaire-----------------------
+
 const afficherFormulaire = ()=>{
     //selection element DOM pour positionner le formulaire
 const formulaire = document.querySelector("#formulaire");
@@ -170,27 +169,52 @@ afficherFormulaire();
 // selection bouton envoyer formulaire-----------
 const btnEnvoyerFormulaire = document.querySelector("#envoyerFormulaire");
 
+
 //----------------addEventlistener pour afficher------------
 btnEnvoyerFormulaire.addEventListener("click",(e) =>
 { e.preventDefault();
+
+// recuperation des valeurs du formulaire
+const formulaireValues ={
+    nom : document.querySelector("#nom").value,
+    prenom : document.querySelector("#prenom").value,
+    mail : document.querySelector("#mail").value,
+    numero : document.querySelector("#numero").value,
+    adresse : document.querySelector("#adresse").value,
+    codepostal : document.querySelector("#codepostal").value,
+    ville : document.querySelector("#ville").value,
+}
+
     //recuperer valeur pour les inserer dans local storage
-localStorage.setItem("nom",document.querySelector("#nom").value);
-localStorage.setItem("prenom",document.querySelector("#prenom").value);
-localStorage.setItem("mail",document.querySelector("#mail").value);
-localStorage.setItem("numero",document.querySelector("#numero").value);
-localStorage.setItem("adresse",document.querySelector("#adresse").value);
-localStorage.setItem("codepostal",document.querySelector("#codepostal").value);
-localStorage.setItem("ville",document.querySelector("#ville").value);
-})
+//localStorage.setItem("nom",document.querySelector("#nom").value);
+//localStorage.setItem("prenom",document.querySelector("#prenom").value);
+//localStorage.setItem("mail",document.querySelector("#mail").value);
+//localStorage.setItem("numero",document.querySelector("#numero").value);
+//localStorage.setItem("adresse",document.querySelector("#adresse").value);
+//localStorage.setItem("codepostal",document.querySelector("#codepostal").value);
+//localStorage.setItem("ville",document.querySelector("#ville").value);
+
+//******mettre l'objet formulaireValues dans le localstorage****** */
+localStorage.setItem("formulaireValues", JSON.stringify(formulaireValues));
 
 // mettre les values du formulaire dans un objet
-const valeurFormulaire ={
-    nom : localStorage.getItem("nom"),
-    prenom : localStorage.getItem("prenom"),
-    mail : localStorage.getItem("mail"),
-    numero : localStorage.getItem("numero"),
-    adresse : localStorage.getItem("adresse"),
-    codepostal : localStorage.getItem("codepostal"),
-    ville : localStorage.getItem("ville"),
+//const valeurFormulaire ={
+    //nom : localStorage.getItem("nom"),
+    //prenom : localStorage.getItem("prenom"),
+    //mail : localStorage.getItem("mail"),
+    //numero : localStorage.getItem("numero"),
+    //adresse : localStorage.getItem("adresse"),
+    //codepostal : localStorage.getItem("codepostal"),
+    //ville : localStorage.getItem("ville"),
+//}
+
+// value du formulaire et produits a mettre dans un objet pour l'envoyer au serveur
+const aEnvoyer = {
+    produitLocal,
+    formulaireValues,
 }
-console.log(valeurFormulaire);
+console.log(aEnvoyer);
+
+// envoyer l'objet aEnvoyer vers le serveur
+})
+
