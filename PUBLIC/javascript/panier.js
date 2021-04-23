@@ -187,8 +187,7 @@ btnEnvoyerFormulaire.addEventListener("click", (e) => {
     }
     // appel de l 'instance de classe Formulaire pour creer l'objet formulairevalues(recup des valeurs)
     const formulaireValues = new Formulaire();
-    console.log(formulaireValues);
-
+  
     // recuperation des valeurs du formulaire
     //const formulaireValues ={
     //nom : document.querySelector("#nom").value,
@@ -218,7 +217,16 @@ const dataLocalStorage = localStorage.getItem("formulaireValues");
 const dataLocalStorageObject = JSON.parse(dataLocalStorage);
 
 //creer une fonction 
-
+function donneesLs(input){
+    document.querySelector( `#${input}`).value = dataLocalStorageObject[input];   
+};
+donneesLs("nom");
+donneesLs("prenom");
+donneesLs("mail");
+donneesLs("numero");
+donneesLs("adresse");
+donneesLs("codepostal");
+donneesLs("ville");
 
 
 // mettre les value du ls dans les champs du formulaire
