@@ -188,6 +188,28 @@ btnEnvoyerFormulaire.addEventListener("click", (e) => {
     // appel de l 'instance de classe Formulaire pour creer l'objet formulairevalues(recup des valeurs)
     const formulaireValues = new Formulaire();
   
+
+//***********GESTION VALIDER FORMULAIRE*********** */
+const leNom = formulaireValues.nom;
+console.log(leNom);
+
+
+//controle du prenom
+const lePrenom = formulaireValues.prenom;
+console.log(lePrenom);
+if(/^[A-Za-z]{3,20}$/.test(lePrenom)){
+    console.log("ok");
+
+}else{
+    console.log("ko");
+
+};
+
+
+
+
+//*****************FIN***************************** */
+
     // recuperation des valeurs du formulaire
     //const formulaireValues ={
     //nom : document.querySelector("#nom").value,
