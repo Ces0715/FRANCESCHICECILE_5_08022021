@@ -10,8 +10,8 @@ let structureProduitPanier = [];
 if (produitLocal === null || produitLocal == 0) {
     const panierVide =
         `<div class=" col-sm-6 col-lg-6 themed-grid-col">
-    <h2> Le panier est vide</h2>
-</div>`;
+        <h2> Le panier est vide</h2>
+    </div>`;
     produitPanier.innerHTML = panierVide;
 
 } else {
@@ -32,10 +32,6 @@ if (produitLocal === null || produitLocal == 0) {
     produitPanier.innerHTML = structureProduitPanier;
 }
 
-
-//------------------------------fin affichage produits panier--------------------------------------------------
-
-
 // ---------------------CREATION BOUTON SUPPRIMER L ARTICLE----------------------------------------
 //selection des references des boutons btn-supprimer
 
@@ -48,13 +44,11 @@ for (let m = 0; m < btn_supprimer.length; m++) {
 
         // selection id qui va etre supprimer en cliquant sur le bouton
         let id_select_suppression = produitLocal[m].id;
-        console.log("id_select_suppression");
-        console.log(id_select_suppression);
 
         //methode filter pour selectionner ce qu il faut garder et suprimer le reste
         produitLocal = produitLocal.filter(el => el.id !== id_select_suppression);
 
-        // on envoie la variable dans le local storage
+        // envoi de la variable dans le local storage
         // transformation en format JSON et envoi dans la key "produit" du local Storage
         localStorage.setItem("produit", JSON.stringify(produitLocal));
 
@@ -64,7 +58,7 @@ for (let m = 0; m < btn_supprimer.length; m++) {
     })
 }
 
-//-------------------BOUTON POUR VIDER COMPLETEMENT LE PANIER--------------------------
+//-------------------CREATION BOUTON POUR VIDER COMPLETEMENT LE PANIER--------------------------
 // code HTML du bouton
 const btn_tout_supprimer =
     `<button class = "btn_tout_supprimer"> Vider le panier</button>`;
@@ -84,8 +78,6 @@ btn_sup.addEventListener('click', (e) => {
     //rechargement page
     window.location.href = "panier.html";
 });
-
-//----------------------------FIN POUR LE BOUTON------------------------------------------
 
 //-------------------------------MONTANT TOTAL------------------------------------------------
 
@@ -187,41 +179,38 @@ btnEnvoyerFormulaire.addEventListener("click", (e) => {
     }
     // appel de l 'instance de classe Formulaire pour creer l'objet formulairevalues(recup des valeurs)
     const formulaireValues = new Formulaire();
-  
-
-//***********GESTION VALIDER FORMULAIRE*********** */
-const leNom = formulaireValues.nom;
-console.log(leNom);
 
 
-//controle du prenom
-const lePrenom = formulaireValues.prenom;
-console.log(lePrenom);
-if(/^[A-Za-z]{3,20}$/.test(lePrenom)){
-    console.log("ok");
-
-}else{
-    console.log("ko");
-
-};
+    //***********GESTION VALIDER FORMULAIRE*********** */
+const regExNomPrenomVille = (value) =>{
+    return /^[A-Za-z]{3,20}$/.test(value);
+}
 
 
+    //const leNom = formulaireValues.nom;
+    //console.log(leNom);
 
 
-//*****************FIN***************************** */
+    function controlePrenom() {
+        //controle du prenom
+        const lePrenom = formulaireValues.prenom;
+        console.log(lePrenom);
+        if (regExNomPrenomVille(lePrenom)) {
+            console.log("ok");
+            return true;
+        } else {
+            console.log("ko");
+            alert ("chiffres non autorisés \n caractères compris entre 3 et 20");
+            return false;
+        }
+    }
 
-    // recuperation des valeurs du formulaire
-    //const formulaireValues ={
-    //nom : document.querySelector("#nom").value,
-    // prenom : document.querySelector("#prenom").value,
-    // mail : document.querySelector("#mail").value,
-    // numero : document.querySelector("#numero").value,
-    //adresse : document.querySelector("#adresse").value,
-    //codepostal : document.querySelector("#codepostal").value,
-    //ville : document.querySelector("#ville").value,
-    //}
-    //******mettre l'objet formulaireValues dans le localstorage****** */
-    localStorage.setItem("formulaireValues", JSON.stringify(formulaireValues));
+    if (controlePrenom()) {
+        //******mettre l'objet formulaireValues dans le localstorage****** */
+        localStorage.setItem("formulaireValues", JSON.stringify(formulaireValues));
+    } else {
+        alert("Veuillez bien remplir le formulaire");
+    }
 
     // value du formulaire et produits a mettre dans un objet pour l'envoyer au serveur
     const aEnvoyer = {
@@ -239,8 +228,8 @@ const dataLocalStorage = localStorage.getItem("formulaireValues");
 const dataLocalStorageObject = JSON.parse(dataLocalStorage);
 
 //creer une fonction 
-function donneesLs(input){
-    document.querySelector( `#${input}`).value = dataLocalStorageObject[input];   
+function donneesLs(input) {
+    document.querySelector(`#${input}`).value = dataLocalStorageObject[input];
 };
 donneesLs("nom");
 donneesLs("prenom");
@@ -251,12 +240,4 @@ donneesLs("codepostal");
 donneesLs("ville");
 
 
-// mettre les value du ls dans les champs du formulaire
-//document.querySelector("#nom").setAttribute('value',dataLocalStorageObject.nom);
-//document.querySelector("#prenom").setAttribute('value',dataLocalStorageObject.prenom);
-//document.querySelector("#mail").setAttribute('value',dataLocalStorageObject.mail);
-//document.querySelector("#numero").setAttribute('value',dataLocalStorageObject.numero);
-//document.querySelector("#adresse").setAttribute('value',dataLocalStorageObject.adresse);
-//document.querySelector("#codepostal").setAttribute('value',dataLocalStorageObject.codepostal);
-//document.querySelector("#ville").setAttribute('value',dataLocalStorageObject.ville);
 

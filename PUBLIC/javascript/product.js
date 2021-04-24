@@ -12,7 +12,7 @@ response.then(async (data) => {
   const article = await data.json();
 
   afficherProduit(article);
-  //adapter le formulaire au nombre d'options couleurs du produit
+  //adapter le formulaire au nombre d'options couleurs et quantite du produit
   afficherCouleur(article);
   afficherQuantite();
 
@@ -43,7 +43,7 @@ response.then(async (data) => {
 
     //fonction fenetre pop up
     const popupConfirm = () => {
-      if (window.confirm(`${article.name}option :${choixForm} ajouté au panier Consultez le panier ou retour accueil`)) {
+      if (window.confirm(`${article.name} option :${choixForm} quantité :${choixForm2}  ajouté au panier Consultez le panier ou retour accueil`)) {
         window.location.href = "panier.html";
       }
       else {
