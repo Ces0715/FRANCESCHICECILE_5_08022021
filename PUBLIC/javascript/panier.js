@@ -181,16 +181,20 @@ btnEnvoyerFormulaire.addEventListener("click", (e) => {
     const formulaireValues = new Formulaire();
 
 
-    //***********GESTION VALIDER FORMULAIRE*********** */
+    //**************************************GESTION VALIDER FORMULAIRE****************************************************/
+
+const alerter = (value) =>{
+return  `${value}:chiffres non autorisés \n caractères compris entre 3 et 20`;
+}
+
 const regExNomPrenomVille = (value) =>{
     return /^[A-Za-z]{3,20}$/.test(value);
 }
+const regExCodePostal = (value) =>{
+    return /^[0-9]{5}$/.test(value);
+}
 
-
-    //const leNom = formulaireValues.nom;
-    //console.log(leNom);
-
-
+    
     function controlePrenom() {
         //controle du prenom
         const lePrenom = formulaireValues.prenom;
@@ -200,12 +204,40 @@ const regExNomPrenomVille = (value) =>{
             return true;
         } else {
             console.log("ko");
-            alert ("chiffres non autorisés \n caractères compris entre 3 et 20");
+            alert (alerter("Prenom"));
+            return false;
+        }
+    };
+
+    function controleNom() {
+        //controle du nom
+        const leNom = formulaireValues.nom;
+        if (regExNomPrenomVille(leNom)) {
+            console.log("ok");
+            return true;
+        } else {
+            console.log("ko");
+            alert (alerter("Nom"));
             return false;
         }
     }
 
-    if (controlePrenom()) {
+    function controleCodePostal() {
+        //controle du code postal
+        const leCodePostal = formulaireValues.codepostal;
+        if (regExCodePostal(leCodePostal)) {
+            console.log("ok");
+            return true;
+        } else {
+            console.log("ko");
+            alert ("Code postal: composé de 5 chiffres");
+            return false;
+        }
+    }
+
+//controle validité du formulaire avant envoi dans le LS
+
+    if (controlePrenom()&& controleNom()&&controleCodePostal()) {
         //******mettre l'objet formulaireValues dans le localstorage****** */
         localStorage.setItem("formulaireValues", JSON.stringify(formulaireValues));
     } else {
