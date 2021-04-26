@@ -7,17 +7,16 @@ const produitPanier = document.querySelector("#panier");
 
 let structureProduitPanier = [];
 // si panier vide..afficher "panier vide"(=== null)
-if (produitLocal === null || produitLocal == 0) {
+console.log(produitLocal);
+if (produitLocal === null || produitLocal.length == 0) {
     const panierVide =
         `<div class=" col-sm-6 col-lg-6 themed-grid-col">
         <h2> Le panier est vide</h2>
     </div>`;
     produitPanier.innerHTML = panierVide;
-
 } else {
     // si panier pas vide : afficher produits dans local storage
     for (let l = 0; l < produitLocal.length; l++) {
-
         structureProduitPanier +=
             ` <div class="row mb-3">
         <div class=" col-12">    
@@ -37,16 +36,17 @@ if (produitLocal === null || produitLocal == 0) {
 
 let btn_supprimer = document.querySelectorAll(".btn-supprimer");
 console.log(btn_supprimer);
-
 for (let m = 0; m < btn_supprimer.length; m++) {
     btn_supprimer[m].addEventListener("click", (event) => {
         event.preventDefault();
 
         // selection id qui va etre supprimer en cliquant sur le bouton
-        let id_select_suppression = produitLocal[m].id;
+        //let id_select_suppression = produitLocal[m].id;
+        //console.log(id_select_suppression);
 
         //methode filter pour selectionner ce qu il faut garder et suprimer le reste
-        produitLocal = produitLocal.filter(el => el.id !== id_select_suppression);
+        //produitLocal = produitLocal.filter(el => el.id !== id_select_suppression);
+        produitLocal = produitLocal.filter(el => el !== produitLocal[m]);
 
         // envoi de la variable dans le local storage
         // transformation en format JSON et envoi dans la key "produit" du local Storage
@@ -82,22 +82,26 @@ btn_sup.addEventListener('click', (e) => {
 //-------------------------------MONTANT TOTAL------------------------------------------------
 
 // variable pour mettre les prix qui sont dans le panier
-let prixTotal = [];
+//let prixTotal = [];
+
+let somme = 0;
+
 
 // chercher les prix du panier avec boucle for
 for (let n = 0; n < produitLocal.length; n++) {
     let prixProduitsPanier = produitLocal[n].price;
 
     // mettre prix dans variable "prixTotal"
-    prixTotal.push(prixProduitsPanier)
+somme = prixProduitsPanier + somme;
+    //prixTotal.push(prixProduitsPanier)
 }
 
 // addition des prix -- methode reduce
-const reducer = (accumulator, currentValue) => accumulator + currentValue;
-const total = prixTotal.reduce(reducer);
+//const reducer = (accumulator, currentValue) => accumulator + currentValue;
+//const total = prixTotal.reduce(reducer);
 
 // code HTML et injection pour afficher prix total
-const affichPrixTotal = `<div class = "prix_total"> Prix total :${total}€ </div>`
+const affichPrixTotal = `<div class = "prix_total"> Prix total :${somme}€ </div>`
 produitPanier.insertAdjacentHTML("beforeend", affichPrixTotal);
 
 //----------------afficher formulaire-----------------------
@@ -165,6 +169,9 @@ const btnEnvoyerFormulaire = document.querySelector("#envoyerFormulaire");
 btnEnvoyerFormulaire.addEventListener("click", (e) => {
     e.preventDefault();
 
+
+//******************************************************************************************** */
+
     //CREATION CLASSE POUR CREER UN OBJET CONTENANT LES VALEURS DU FORMULAIRE
     class Formulaire {
         constructor() {
@@ -183,28 +190,27 @@ btnEnvoyerFormulaire.addEventListener("click", (e) => {
 
     //**************************************GESTION VALIDER FORMULAIRE****************************************************/
 
-const alerter = (value) =>{
-return  `${value}:chiffres non autorisés \n caractères compris entre 3 et 20`;
-}
+    const alerter = (value) => {
+        return `${value}:chiffres non autorisés \n caractères compris entre 3 et 20`;
+    }
 
-const regExNomPrenomVille = (value) =>{
-    return /^[A-Za-z]{3,20}$/.test(value);
-}
-const regExCodePostal = (value) =>{
-    return /^[0-9]{5}$/.test(value);
-}
+    const regExNomPrenomVille = (value) => {
+        return /^[A-Za-z]{3,20}$/.test(value);
+    }
+    const regExCodePostal = (value) => {
+        return /^[0-9]{5}$/.test(value);
+    }
 
-    
+
     function controlePrenom() {
         //controle du prenom
         const lePrenom = formulaireValues.prenom;
-        console.log(lePrenom);
         if (regExNomPrenomVille(lePrenom)) {
             console.log("ok");
             return true;
         } else {
             console.log("ko");
-            alert (alerter("Prenom"));
+            alert(alerter("Prenom"));
             return false;
         }
     };
@@ -216,8 +222,8 @@ const regExCodePostal = (value) =>{
             console.log("ok");
             return true;
         } else {
-            console.log("ko");
-            alert (alerter("Nom"));
+           console.log("ko");
+            alert(alerter("Nom"));
             return false;
         }
     }
@@ -230,14 +236,14 @@ const regExCodePostal = (value) =>{
             return true;
         } else {
             console.log("ko");
-            alert ("Code postal: composé de 5 chiffres");
+           alert("Code postal: composé de 5 chiffres");
             return false;
         }
     }
 
-//controle validité du formulaire avant envoi dans le LS
+    //controle validité du formulaire avant envoi dans le LS
 
-    if (controlePrenom()&& controleNom()&&controleCodePostal()) {
+    if (controlePrenom() && controleNom() && controleCodePostal()) {
         //******mettre l'objet formulaireValues dans le localstorage****** */
         localStorage.setItem("formulaireValues", JSON.stringify(formulaireValues));
     } else {
@@ -271,5 +277,5 @@ donneesLs("adresse");
 donneesLs("codepostal");
 donneesLs("ville");
 
-
+  
 
