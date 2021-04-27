@@ -32,6 +32,7 @@ response.then(async (data) => {
     let optionsProduit = {
       name: article.name,
       id: article._id,
+      imageUrl :article.imageUrl ,
       price: (article.price*choixForm2) / 100,
       option_couleur: choixForm,
       option_quantité: choixForm2,

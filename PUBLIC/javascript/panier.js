@@ -18,15 +18,21 @@ if (produitLocal === null || produitLocal.length == 0) {
     // si panier pas vide : afficher produits dans local storage
     for (let l = 0; l < produitLocal.length; l++) {
         structureProduitPanier +=
-            ` <div class="row mb-3">
-        <div class=" col-12">    
-                <p id="name">Nom du produit :${produitLocal[l].name}</p> 
-                <p id="price">Prix: ${produitLocal[l].price} €</p>  
-                <p id = "couleur" >Couleur : ${produitLocal[l].option_couleur}</p>
-                <p id = "quantité" >Quantité : ${produitLocal[l].option_quantité}</p>  
-                <button class="btn-supprimer">Supprimer </button>
-            </div>      
-        </div>  `;
+
+`<div class="row mb-3">     
+    <div class=" col-sm-6 col-lg-6 themed-grid-col"> 
+        <h2 id="name">Nom du produit : ${produitLocal[l].name}</h2> 
+<p id="price">Prix: ${produitLocal[l].price} €</p>  
+<p id = "couleur" >Couleur : ${produitLocal[l].option_couleur}</p>
+<p id = "quantité" >Quantité : ${produitLocal[l].option_quantité}</p>  
+
+</div>
+    <div class="col-sm-6 col-lg-6 themed-grid-col"> 
+  <img width="300"  src = "${produitLocal[l].imageUrl}">
+  <button class="btn-supprimer">Supprimer </button>
+</div>
+</div> `;
+
     }
     produitPanier.innerHTML = structureProduitPanier;
 }
@@ -40,12 +46,6 @@ for (let m = 0; m < btn_supprimer.length; m++) {
     btn_supprimer[m].addEventListener("click", (event) => {
         event.preventDefault();
 
-        // selection id qui va etre supprimer en cliquant sur le bouton
-        //let id_select_suppression = produitLocal[m].id;
-        //console.log(id_select_suppression);
-
-        //methode filter pour selectionner ce qu il faut garder et suprimer le reste
-        //produitLocal = produitLocal.filter(el => el.id !== id_select_suppression);
         produitLocal = produitLocal.filter(el => el !== produitLocal[m]);
 
         // envoi de la variable dans le local storage
@@ -82,24 +82,13 @@ btn_sup.addEventListener('click', (e) => {
 //-------------------------------MONTANT TOTAL------------------------------------------------
 
 // variable pour mettre les prix qui sont dans le panier
-//let prixTotal = [];
-
 let somme = 0;
-
-
 // chercher les prix du panier avec boucle for
 for (let n = 0; n < produitLocal.length; n++) {
     let prixProduitsPanier = produitLocal[n].price;
 
-    // mettre prix dans variable "prixTotal"
 somme = prixProduitsPanier + somme;
-    //prixTotal.push(prixProduitsPanier)
 }
-
-// addition des prix -- methode reduce
-//const reducer = (accumulator, currentValue) => accumulator + currentValue;
-//const total = prixTotal.reduce(reducer);
-
 // code HTML et injection pour afficher prix total
 const affichPrixTotal = `<div class = "prix_total"> Prix total :${somme}€ </div>`
 produitPanier.insertAdjacentHTML("beforeend", affichPrixTotal);
@@ -193,14 +182,19 @@ btnEnvoyerFormulaire.addEventListener("click", (e) => {
     const alerter = (value) => {
         return `${value}:chiffres non autorisés \n caractères compris entre 3 et 20`;
     }
-
     const regExNomPrenomVille = (value) => {
-        return /^[A-Za-z]{3,20}$/.test(value);
+        return /^([A-Za-z]{3,20})?([-]{0,1})?([A-Za-z]{3,20})$/.test(value);
     }
     const regExCodePostal = (value) => {
         return /^[0-9]{5}$/.test(value);
     }
+    const regExEmail = (value) => {
+        return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(value);
+    }
 
+    const regExAdresse = (value) => {
+        return /^[A-Za-z0-9\s]{5,50}$/.test(value);
+    }
 
     function controlePrenom() {
         //controle du prenom
@@ -226,7 +220,7 @@ btnEnvoyerFormulaire.addEventListener("click", (e) => {
             alert(alerter("Nom"));
             return false;
         }
-    }
+    };
 
     function controleCodePostal() {
         //controle du code postal
@@ -236,14 +230,41 @@ btnEnvoyerFormulaire.addEventListener("click", (e) => {
             return true;
         } else {
             console.log("ko");
-           alert("Code postal: composé de 5 chiffres");
+           alert("Le code postal doit etre composé de 5 chiffres");
             return false;
         }
-    }
+    };
+
+    function controleEmail() {
+        //controle de mail
+        const leEmail = formulaireValues.mail;
+        if (regExEmail(leEmail)) {
+            console.log("ok");
+            return true;
+        } else {
+            console.log("ko");
+           alert(" l'Email n'est pas correct");
+            return false;
+        }
+    };
+
+    function controleAdresse() {
+        //controle de l'adresse
+        const leAdresse = formulaireValues.adresse;
+        if (regExAdresse(leAdresse)) {
+            console.log("ok");
+            return true;
+        } else {
+            console.log("ko");
+           alert(" l'adresse n'est pas correcte");
+            return false;
+        }
+    };
+
 
     //controle validité du formulaire avant envoi dans le LS
 
-    if (controlePrenom() && controleNom() && controleCodePostal()) {
+    if (controlePrenom() && controleNom() && controleCodePostal() && controleEmail() && controleAdresse()) {
         //******mettre l'objet formulaireValues dans le localstorage****** */
         localStorage.setItem("formulaireValues", JSON.stringify(formulaireValues));
     } else {
@@ -254,8 +275,11 @@ btnEnvoyerFormulaire.addEventListener("click", (e) => {
     const aEnvoyer = {
         produitLocal,
         formulaireValues,
-    }
+    };
+
     // envoyer l'objet aEnvoyer vers le serveur
+
+    
 });
 
 //*******CONTENU DU LS DANS LES CHAMPS DU FORMULAIRE*********/
@@ -267,8 +291,13 @@ const dataLocalStorageObject = JSON.parse(dataLocalStorage);
 
 //creer une fonction 
 function donneesLs(input) {
-    document.querySelector(`#${input}`).value = dataLocalStorageObject[input];
-};
+    if(dataLocalStorageObject == null){
+console.log("pas de valeur au local storage");
+    }
+    else{
+        document.querySelector(`#${input}`).value = dataLocalStorageObject[input];  
+    };       
+}
 donneesLs("nom");
 donneesLs("prenom");
 donneesLs("mail");
