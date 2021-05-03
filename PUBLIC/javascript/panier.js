@@ -32,7 +32,6 @@ if (produitLocal === null || produitLocal.length == 0) {
   <button class="btn-supprimer">Supprimer </button>
 </div>
 </div> `;
-
     }
     produitPanier.innerHTML = structureProduitPanier;
 }
@@ -86,15 +85,15 @@ let somme = 0;
 // chercher les prix du panier avec boucle for
 for (let n = 0; n < produitLocal.length; n++) {
     let prixProduitsPanier = produitLocal[n].price;
-
 somme = prixProduitsPanier + somme;
 }
 // code HTML et injection pour afficher prix total
 const affichPrixTotal = `<div class = "prix_total"> Prix total :${somme}€ </div>`
 produitPanier.insertAdjacentHTML("beforeend", affichPrixTotal);
 
-//----------------afficher formulaire-----------------------
 
+
+//----------------afficher formulaire-----------------------
 const afficherFormulaire = () => {
     //selection element DOM pour positionner le formulaire
     const formulaire = document.querySelector("#formulaire");
@@ -157,134 +156,39 @@ const btnEnvoyerFormulaire = document.querySelector("#envoyerFormulaire");
 //----------------addEventlistener pour afficher------------
 btnEnvoyerFormulaire.addEventListener("click", (e) => {
     e.preventDefault();
-
+    window.location.href = "confirmation.html";
 
 //******************************************************************************************** */
 
-    //CREATION CLASSE POUR CREER UN OBJET CONTENANT LES VALEURS DU FORMULAIRE
-    class Formulaire {
-        constructor() {
-            this.nom = document.querySelector("#nom").value;
-            this.prenom = document.querySelector("#prenom").value;
-            this.mail = document.querySelector("#mail").value;
-            this.numero = document.querySelector("#numero").value;
-            this.adresse = document.querySelector("#adresse").value;
-            this.codepostal = document.querySelector("#codepostal").value;
-            this.ville = document.querySelector("#ville").value;
-        }
-    }
+    
     // appel de l 'instance de classe Formulaire pour creer l'objet formulairevalues(recup des valeurs)
     const formulaireValues = new Formulaire();
 
-
     //**************************************GESTION VALIDER FORMULAIRE****************************************************/
 
-    const alerter = (value) => {
-        return `${value}:chiffres non autorisés \n caractères compris entre 3 et 20`;
-    }
-    const regExNomPrenomVille = (value) => {
-        return /^([A-Za-z]{3,20})?([-]{0,1})?([A-Za-z]{3,20})$/.test(value);
-    }
-    const regExCodePostal = (value) => {
-        return /^[0-9]{5}$/.test(value);
-    }
-    const regExEmail = (value) => {
-        return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(value);
-    }
+    
+    
+    
+    
 
-    const regExAdresse = (value) => {
-        return /^[A-Za-z0-9\s]{5,50}$/.test(value);
-    }
+    
 
-    function controlePrenom() {
-        //controle du prenom
-        const lePrenom = formulaireValues.prenom;
-        if (regExNomPrenomVille(lePrenom)) {
-            console.log("ok");
-            return true;
-        } else {
-            console.log("ko");
-            alert(alerter("Prenom"));
-            return false;
-        }
-    };
-
-    function controleNom() {
-        //controle du nom
-        const leNom = formulaireValues.nom;
-        if (regExNomPrenomVille(leNom)) {
-            console.log("ok");
-            return true;
-        } else {
-           console.log("ko");
-            alert(alerter("Nom"));
-            return false;
-        }
-    };
-
-    function controleCodePostal() {
-        //controle du code postal
-        const leCodePostal = formulaireValues.codepostal;
-        if (regExCodePostal(leCodePostal)) {
-            console.log("ok");
-            return true;
-        } else {
-            console.log("ko");
-           alert("Le code postal doit etre composé de 5 chiffres");
-            return false;
-        }
-    };
-
-    function controleEmail() {
-        //controle de mail
-        const leEmail = formulaireValues.mail;
-        if (regExEmail(leEmail)) {
-            console.log("ok");
-            return true;
-        } else {
-            console.log("ko");
-           alert(" l'Email n'est pas correct");
-            return false;
-        }
-    };
-
-    function controleAdresse() {
-        //controle de l'adresse
-        const leAdresse = formulaireValues.adresse;
-        if (regExAdresse(leAdresse)) {
-            console.log("ok");
-            return true;
-        } else {
-            console.log("ko");
-           alert(" l'adresse n'est pas correcte");
-            return false;
-        }
-    };
-
+    
 
     //controle validité du formulaire avant envoi dans le LS
-
     if (controlePrenom() && controleNom() && controleCodePostal() && controleEmail() && controleAdresse()) {
         //******mettre l'objet formulaireValues dans le localstorage****** */
         localStorage.setItem("formulaireValues", JSON.stringify(formulaireValues));
     } else {
         alert("Veuillez bien remplir le formulaire");
     }
-
-    // value du formulaire et produits a mettre dans un objet pour l'envoyer au serveur
-    const aEnvoyer = {
-        produitLocal,
-        formulaireValues,
-    };
-
-    // envoyer l'objet aEnvoyer vers le serveur
-
-    
 });
+
 
 //*******CONTENU DU LS DANS LES CHAMPS DU FORMULAIRE*********/
 // mettre la key du ls dans une variable
 const dataLocalStorage = localStorage.getItem("formulaireValues");
+console.log(dataLocalStorage);
 
 //convertir la chaine de caractere en objet JS
 const dataLocalStorageObject = JSON.parse(dataLocalStorage);
@@ -308,3 +212,16 @@ donneesLs("ville");
 
   
 
+
+
+// creation objet du formulaire et produits a mettre dans un objet pour l'envoyer au serveur
+    //const aEnvoyer = {
+        //produitLocal,
+        //formulaireValues,
+    //};
+    //function envoiServeur(){
+     // envoyer l'objet aEnvoyer vers le serveur
+     //const promise1 = fetch( "http://localhost:3000/api/teddies" );
+     //console.log(promise01);
+
+//}
