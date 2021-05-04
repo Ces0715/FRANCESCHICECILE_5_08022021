@@ -18,7 +18,6 @@ class Formulaire {
      regExNomPrenomVille(value) {
         return /^([A-Za-z]{3,20})?([-]{0,1})?([A-Za-z]{3,20})$/.test(value);
     }
-
      controlePrenom() {
         //controle du prenom
         const lePrenom = formulaireValues.prenom;
@@ -98,6 +97,18 @@ class Formulaire {
     }
 
 
-
     
 }
+
+
+// appel de l 'instance de classe Formulaire pour creer l'objet formulairevalues(recup des valeurs)
+const formulaireValues = new Formulaire();
+
+
+    //controle validité du formulaire avant envoi dans le LS
+    if (controlePrenom() && controleNom() && controleCodePostal() && controleEmail() && controleAdresse()) {
+        //******mettre l'objet formulaireValues dans le localstorage****** */
+        localStorage.setItem("formulaireValues", JSON.stringify(formulaireValues));
+    } else {
+        alert("Veuillez bien remplir le formulaire");
+    }
