@@ -566,7 +566,11 @@ donneesLs("ville");
 
 //-------------------------------------------------------------
 
-})//CREATION CLASSE POUR CREER UN OBJET CONTENANT LES VALEURS DU FORMULAIRE
+})
+
+
+
+//CREATION CLASSE POUR CREER UN OBJET CONTENANT LES VALEURS DU FORMULAIRE
 class Formulaire {
     constructor() {
         this.nom = document.querySelector("#nom").value;
