@@ -208,7 +208,15 @@ btnEnvoyerFormulaire.addEventListener("click", (e) => {
 
             if(response.ok){
                 console.log(`resultat de response.ok:${response.ok}`);
-                
+    // RECUP ID RESPONSE
+    console.log(products);
+    console.log("contenu");
+
+    // mettre id dans LS
+    localStorage.setItem("responseId",products);
+    //aller vers page confirmation
+    window.location = "confirmation.html";
+
             }else{
                 console.log(`resultat du serveur:${response.status}`)
                 alert(`probleme avec le serveur: erreur ${response.status}`)
