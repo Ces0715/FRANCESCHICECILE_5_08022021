@@ -11,7 +11,6 @@ section {
 .container {
     padding-left: 0;
     padding-right: 0;
-
     & h1 {
         text-align: center;
         color: #9f64d0;
@@ -19,15 +18,20 @@ section {
         font-size: 25px;
         font-family: "Finger Paint", cursive;
     }
-
     .row {
         margin-left: 50px;
         margin-right: 50px;
         box-shadow: 1px 1px 12px purple;
         & p {
-            font-size: 10px;
+            font-size: 15px;
+            padding-bottom: 10px;
         }
     }
+
+    label{
+    margin-bottom: 20px;
+    }
+
 
     .col-sm-6 img {
         box-shadow: 1px 1px 12px black;

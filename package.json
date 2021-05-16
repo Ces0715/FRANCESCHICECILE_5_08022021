@@ -23,5 +23,6 @@
     "script": "^0.0.12",
     "server": "^1.0.32"
   },
+  "devDependencies": {},
   "description": ""
 }
