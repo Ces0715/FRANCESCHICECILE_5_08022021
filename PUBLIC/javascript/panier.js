@@ -181,13 +181,11 @@ btnEnvoyerFormulaire.addEventListener("click", (e) => {
 
     const send = {
         contact,
-        products,
+        products, somme,
     };
     console.log(send);
 
-
     // envoi des données au serveur
-
     const fetchData = fetch("http://localhost:3000/api/teddies/order", {
         method: "POST",
         body: JSON.stringify(send),
@@ -195,7 +193,6 @@ btnEnvoyerFormulaire.addEventListener("click", (e) => {
             "Content-Type": "application/json",
         },
     });
-    
 
     //voir le resultat du serveur dans la console
     fetchData.then(async (response) => {
@@ -206,18 +203,18 @@ btnEnvoyerFormulaire.addEventListener("click", (e) => {
             const contenu = await response.json();
             console.log(contenu);
 
-            if(response.ok){
+            if (response.ok) {
                 console.log(`resultat de response.ok:${response.ok}`);
-    // RECUP ID RESPONSE
-    console.log(products);
-    console.log("contenu");
+                // RECUP ID RESPONSE
+                console.log(products);
+                console.log("contenu");
 
-    // mettre id dans LS
-    localStorage.setItem("responseId",products);
-    //aller vers page confirmation
-    window.location = "confirmation.html";
+                // mettre id dans LS
+                localStorage.setItem("responseId", products);
+                //aller vers page confirmation
+                window.location = "confirmation.html";
 
-            }else{
+            } else {
                 console.log(`resultat du serveur:${response.status}`)
                 alert(`probleme avec le serveur: erreur ${response.status}`)
             }
@@ -228,9 +225,6 @@ btnEnvoyerFormulaire.addEventListener("click", (e) => {
             alert(`erreur du catch ${e}`);
         }
     })
-
-   
-
 
     //*******CONTENU DU LS DANS LES CHAMPS DU FORMULAIRE*********/
     // mettre la key du ls dans une variable
@@ -256,6 +250,4 @@ btnEnvoyerFormulaire.addEventListener("click", (e) => {
     donneesLs("adresse");
     donneesLs("codepostal");
     donneesLs("ville");
-
-
 });

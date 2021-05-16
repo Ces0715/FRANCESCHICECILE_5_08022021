@@ -19,6 +19,7 @@
     "bootstrap": "^4.6.0",
     "js": "^0.1.0",
     "node": "^15.8.0",
+    "nodesass": "^0.0.2-security",
     "script": "^0.0.12",
     "server": "^1.0.32"
   },

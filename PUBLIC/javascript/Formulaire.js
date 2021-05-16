@@ -11,23 +11,21 @@ class Formulaire {
   }
 
   alerter(value) {
-    alert( `${value}:chiffres non autorisés \n caractères compris entre 3 et 20`);
+    alert(`${value}:chiffres non autorisés \n caractères compris entre 3 et 20`);
   }
   regExNomPrenomVille(value) {
     return /^([A-Za-z]{3,20})?([-]{0,1})?([A-Za-z]{3,20})$/.test(value);
   }
   regExCodePostal(value) {
     return /^[0-9]{5}$/.test(value);
-
   }
+
   controlePrenom() {
     //controle du prenom
     const lePrenom = this.prenom;
     if (this.regExNomPrenomVille(lePrenom)) {
-      console.log("ok");
       return true;
     } else {
-      console.log("ko");
       this.alerter("Prenom");
       return false;
     }
@@ -36,10 +34,8 @@ class Formulaire {
     //controle du nom
     const leNom = this.nom;
     if (this.regExNomPrenomVille(leNom)) {
-      console.log("ok");
       return true;
     } else {
-      console.log("ko");
       this.alerter("Nom");
       return false;
     }
@@ -49,10 +45,8 @@ class Formulaire {
     //controle du code postal
     const leCodePostal = this.codepostal;
     if (this.regExCodePostal(leCodePostal)) {
-      console.log("ok");
       return true;
     } else {
-      console.log("ko");
       alert("Le code postal doit etre composé de 5 chiffres");
       return false;
     }
@@ -66,10 +60,8 @@ class Formulaire {
     //controle de mail
     const leEmail = this.mail;
     if (this.regExEmail(leEmail)) {
-      console.log("ok");
       return true;
     } else {
-      console.log("ko");
       alert(" l'Email n'est pas correct");
       return false;
     }
@@ -83,10 +75,8 @@ class Formulaire {
     //controle de l'adresse
     const leAdresse = this.adresse;
     if (this.regExAdresse(leAdresse)) {
-      console.log("ok");
       return true;
     } else {
-      console.log("ko");
       alert(" l'adresse n'est pas correcte");
       return false;
     }
@@ -97,12 +87,39 @@ class Formulaire {
     if (this.controlePrenom() && this.controleNom() && this.controleCodePostal() && this.controleEmail() && this.controleAdresse()) {
       //******mettre l'objet formulaireValues dans le localstorage****** */
       localStorage.setItem("formulaireValues", JSON.stringify(this));
+      localStorage.setItem("prixTotal", JSON.stringify(somme));
+
     } else {
       alert("Veuillez bien remplir le formulaire");
     }
-
   }
 }
 
 
+//recuperation id de la commande du LS
+const responseId = localStorage.getItem("responseId");
+console.log(`responseId : ${responseId}`);
 
+// recuperation du prix total
+const prixT = localStorage.getItem("prixTotal");
+console.log(`prixTotal : ${prixT}`);
+
+//structure html de la page
+// selection element du DOM
+const prixTotalHtml = document.querySelector("#confirmation");
+const structureConfirmation =
+  `<div class="row mb-3">
+<div class=" col-12"> 
+    <h2>Orinoco vous remercie pour votre commande</h2>
+    <p>Nous avons le plaisir de vous informer que votre commande a bien été enregistrée. Vous trouverez ci-dessous le récapitulatif de votre commande. En espérant vous revoir très vite</p>
+</div>
+<div class=" col-12">
+    <h2> Récapitulatif de votre commande </h2>
+    <p>Votre commande numéro : <span class ="gras">${responseId}</span> a bien été prise en compte</p>
+    <p>Le montant de votre commande est de : <span class ="gras">${prixT}</span>€</p>
+    <p class="gras">Au plaisir de vous revoir</p>
+</div>
+</div>`;
+
+// injection html
+prixTotalHtml.insertAdjacentHTML("afterbegin", structureConfirmation);
