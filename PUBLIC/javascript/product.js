@@ -74,7 +74,7 @@ function afficherProduit(article) {
   <div class=" col-sm-6 col-lg-6 themed-grid-col"> 
     <h2 id="name">${article.name}</h2> 
     <p id="id"> Référence: ${article._id}</p>
-    <p id="price">Prix: ${article.price / 100} €</p> 
+    <p id="price">Son prix : ${article.price / 100} €</p> 
     <form>
       <label for ="option_couleur"> Choisir la couleur:
         <select name="choix" id="option_couleur" > </select>
