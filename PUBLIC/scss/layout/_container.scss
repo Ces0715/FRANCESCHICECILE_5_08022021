@@ -9,7 +9,6 @@ section {
 }
 
 .container {
-   
     padding-left: 0;
     padding-right: 0;
     & h1 {
@@ -34,6 +33,14 @@ section {
 
     label {
         margin-bottom: 20px;
+        
+    }
+    button{
+        margin-left: 70px;
+    }
+    .col-sm-6{
+        padding-right: 30px;
+        padding-left: 30px;
     }
 
     .col-sm-6 img {
@@ -41,7 +48,9 @@ section {
         border: 0.1em solid black;
         margin-top: 10px;
         margin-bottom: 10px;
-        border-radius: 50px;    
+        border-radius: 50px;  
+         
+       
     }
 
     h2 {
@@ -82,7 +91,7 @@ section {
         }
 
         .col-sm-6 {
-            padding-left: 5px;
+            padding-left: 20px;
         }
     }
 }

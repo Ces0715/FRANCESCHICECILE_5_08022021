@@ -73,8 +73,8 @@ function afficherProduit(article) {
     `<div class="row mb-3">     
   <div class=" col-sm-6 col-lg-6 themed-grid-col"> 
     <h2 id="name">${article.name}</h2> 
-    <p id="id"> Référence: ${article._id}</p>
-    <p id="price">Son prix : ${article.price / 100} €</p> 
+    
+    <p id="price"><span class ="gras">Son prix : ${article.price / 100}</span> €</p> 
     <form>
       <label for ="option_couleur"> Choisir la couleur:
         <select name="choix" id="option_couleur" > </select>
@@ -85,11 +85,13 @@ function afficherProduit(article) {
         <select name ="quantity" id ="option_quantité"></select> 
       </label>
     </form>
+    
   </div>
-  <div class="col-sm-6 col-lg-6 themed-grid-col"> 
+  <div class="col-sm-6 col-lg-6 themed-grid-col">  
     <a href="./panier.html?id=${'_id'}">
     <img width="300"  src = "${article.imageUrl}">
     <button id ="btn-envoyer" type="submit name="btn-envoyer">Ajouter au panier</button>
+    
   </div> `;
 }
 
