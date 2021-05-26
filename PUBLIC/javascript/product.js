@@ -1,7 +1,7 @@
 //recuperation chaine de requete dans url
 const queryString_url_id = window.location.search;
 
-// methode2 pour extraire l 'id
+// methode pour extraire l 'id
 const urlSearchParams = new URLSearchParams(queryString_url_id);
 const id = urlSearchParams.get("id");
 

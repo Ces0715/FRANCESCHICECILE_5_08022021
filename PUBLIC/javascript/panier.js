@@ -1,6 +1,5 @@
 //declaration variable pour mettre key et value dans le local storage
 let produitLocal = JSON.parse(localStorage.getItem("produit"));
-console.log(produitLocal);
 
 // affichage produits panier-- selection id ou injection code html
 const produitPanier = document.querySelector("#panier");
@@ -17,20 +16,19 @@ if (produitLocal === null || produitLocal.length == 0) {
     // si panier pas vide : afficher produits dans local storage
     for (let l = 0; l < produitLocal.length; l++) {
         structureProduitPanier +=
-
-            `<div class="row mb-3">     
-    <div class=" col-sm-6 col-lg-6 themed-grid-col"> 
-        <h2 id="name">Produit : ${produitLocal[l].name}</h2> 
-<p id="price">Prix: ${produitLocal[l].price} €</p>  
-<p id = "couleur" >Couleur : ${produitLocal[l].option_couleur}</p>
-<p id = "quantité" >Quantité : ${produitLocal[l].option_quantité}</p>  
-<p id = "id" >Id : ${produitLocal[l].id}</p>  
-</div>
-    <div class="col-sm-6 col-lg-6 themed-grid-col"> 
-  <img width="300"  src = "${produitLocal[l].imageUrl}">
-  <button class="btn-supprimer">Supprimer </button>
-</div>
-</div> `;
+         `<div class="row mb-3">     
+            <div class=" col-sm-6 col-lg-6 themed-grid-col"> 
+                <h2 id="name">Produit : ${produitLocal[l].name}</h2> 
+                <p id="price">Prix: ${produitLocal[l].price} €</p>  
+                <p id = "couleur" >Couleur : ${produitLocal[l].option_couleur}</p>
+                <p id = "quantité" >Quantité : ${produitLocal[l].option_quantité}</p>  
+                <p id = "id" >Id : ${produitLocal[l].id}</p>  
+            </div>
+            <div class="col-sm-6 col-lg-6 themed-grid-col"> 
+                <img width="300"  src = "${produitLocal[l].imageUrl}">
+                <button class="btn-supprimer">Supprimer </button>
+            </div>
+        </div> `;
     }
     produitPanier.innerHTML = structureProduitPanier;
 }
@@ -168,7 +166,7 @@ btnEnvoyerFormulaire.addEventListener("click", (e) => {
         city: ville.value,
         email: mail.value,
     }
-    console.log(contact);
+    
 
 
     // création du tableau products (id des oursons du panier)
@@ -177,13 +175,11 @@ btnEnvoyerFormulaire.addEventListener("click", (e) => {
         const productsId = produitPanier.id;
         products.push((productsId));
     }
-    console.log(products);
 
     const send = {
         contact,
         products, somme,
     };
-    console.log(send);
 
     // envoi des données au serveur
     const fetchData = fetch("http://localhost:3000/api/teddies/order", {
@@ -229,7 +225,6 @@ btnEnvoyerFormulaire.addEventListener("click", (e) => {
     //*******CONTENU DU LS DANS LES CHAMPS DU FORMULAIRE*********/
     // mettre la key du ls dans une variable
     const dataLocalStorage = localStorage.getItem("formulaireValues");
-
 
     //convertir la chaine de caractere en objet JS
     const dataLocalStorageObject = JSON.parse(dataLocalStorage);

@@ -19,6 +19,12 @@ class Formulaire {
   regExCodePostal(value) {
     return /^[0-9]{5}$/.test(value);
   }
+  regExEmail(value) {
+    return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(value);
+  }
+  regExAdresse(value) {
+    return /^[A-Za-z0-9\s]{5,50}$/.test(value);
+  }
 
   controlePrenom() {
     //controle du prenom
@@ -30,6 +36,7 @@ class Formulaire {
       return false;
     }
   }
+
   controleNom() {
     //controle du nom
     const leNom = this.nom;
@@ -52,10 +59,6 @@ class Formulaire {
     }
   }
 
-  regExEmail(value) {
-    return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(value);
-  }
-
   controleEmail() {
     //controle de mail
     const leEmail = this.mail;
@@ -65,10 +68,6 @@ class Formulaire {
       alert(" l'Email n'est pas correct");
       return false;
     }
-  }
-
-  regExAdresse(value) {
-    return /^[A-Za-z0-9\s]{5,50}$/.test(value);
   }
 
   controleAdresse() {
@@ -109,14 +108,14 @@ console.log(`prixTotal : ${prixT}`);
 const prixTotalHtml = document.querySelector("#confirmation");
 const structureConfirmation =
   `<div class="row mb-3">
-<div class=" col-12"> 
-    <h2>Orinoco vous remercie pour votre commande</h2>
-    <p>Nous avons le plaisir de vous informer que votre commande a bien été enregistrée. Vous trouverez ci-dessous le récapitulatif de votre commande. En espérant vous revoir très vite</p>
-</div>
-<div class=" col-12">
-    <h2> Récapitulatif de votre commande </h2>
-    <p>Votre commande numéro : <span class ="gras">${responseId}</span> a bien été prise en compte</p>
-    <p>Le montant de votre commande est de : <span class ="gras">${prixT}</span>€</p>
+      <div class=" col-12"> 
+        <h2>Orinoco vous remercie pour votre commande</h2>
+        <p>Nous avons le plaisir de vous informer que votre commande a bien été enregistrée. Vous trouverez ci-dessous le récapitulatif de votre commande. En espérant vous revoir très vite</p>
+    </div>
+    <div class=" col-12">
+      <h2> Récapitulatif de votre commande </h2>
+      <p> ${responseId} a bien été prise en compte</p>
+    <p>Le montant de votre commande est de : ${prixT}€</p>
     <p class="gras">Au plaisir de vous revoir</p>
 </div>
 </div>`;
