@@ -5,19 +5,19 @@ const queryString_url_id = window.location.search;
 const urlSearchParams = new URLSearchParams(queryString_url_id);
 const id = urlSearchParams.get("id");
 
-//affichage du produit selectionné par son id
-//methode 1 avec fetch en mettant l'id a la fin de l url
+//affichage du produit selectionné par son id en utilisant la methode fetch en mettant l'id a la fin de l url
 const response = fetch(`http://localhost:3000/api/teddies/${id}`);
 response.then(async (data) => {
   const article = await data.json();
 
+  //adapter le formulaire au nombre d'options couleurs et quantite de chaque produit
   afficherProduit(article);
-  //adapter le formulaire au nombre d'options couleurs et quantite du produit
   afficherCouleur(article);
   afficherQuantite();
 
   //selection bouton pour l'ajout au panier
   const btnPanier = document.querySelector("#btn-envoyer");
+
   //ecouter le bouton et envoyer au panier
   btnPanier.addEventListener("click", (event) => {
     event.preventDefault();
@@ -32,8 +32,8 @@ response.then(async (data) => {
     let optionsProduit = {
       name: article.name,
       id: article._id,
-      imageUrl :article.imageUrl ,
-      price: (article.price*choixForm2) / 100,
+      imageUrl: article.imageUrl,
+      price: (article.price * choixForm2) / 100,
       option_couleur: choixForm,
       option_quantité: choixForm2,
     }
@@ -71,28 +71,25 @@ function afficherProduit(article) {
   //preparation structure HTML pour affichage produit
   document.getElementById("produit").innerHTML +=
     `<div class="row mb-3">     
-  <div class=" col-sm-6 col-lg-6 themed-grid-col"> 
-    <h2 id="name">${article.name}</h2> 
-    
-    <p id="price"><span class ="gras">Son prix : ${article.price / 100}</span> €</p> 
-    <form>
-      <label for ="option_couleur"> Choisir la couleur:
-        <select name="choix" id="option_couleur" > </select>
-      </label> 
-    </form>
-    <form>
-      <label for ="option_quantité"> Choisir la quantité :
-        <select name ="quantity" id ="option_quantité"></select> 
-      </label>
-    </form>
-    
-  </div>
-  <div class="col-sm-6 col-lg-6 themed-grid-col">  
-    <a href="./panier.html?id=${'_id'}">
-    <img width="300"  src = "${article.imageUrl}">
-    <button id ="btn-envoyer" type="submit name="btn-envoyer">Ajouter au panier</button>
-    
-  </div> `;
+      <div class=" col-sm-6 col-lg-6 themed-grid-col"> 
+        <h2 id="name">${article.name}</h2> 
+        <p id="price"><span class ="gras">Son prix : ${article.price / 100}</span> €</p> 
+        <form>
+          <label for ="option_couleur"> Choisir la couleur:
+          <select name="choix" id="option_couleur" > </select>
+          </label> 
+        </form>
+        <form>
+          <label for ="option_quantité"> Choisir la quantité :
+          <select name ="quantity" id ="option_quantité"></select> 
+          </label>
+        </form>  
+      </div>
+      <div class="col-sm-6 col-lg-6 themed-grid-col">  
+        <a href="./panier.html?id=${'_id'}">
+        <img width="300"  src = "${article.imageUrl}">
+        <button id ="btn-envoyer" type="submit name="btn-envoyer">Ajouter au panier</button>  
+      </div> `;
 }
 
 function afficherCouleur(article) {
@@ -101,7 +98,7 @@ function afficherCouleur(article) {
 
   // boucle for pour afficher options couleur
   for (let j = 0; j < optionCouleur.length; j++) {
-    structureOptions += `<option value = "${optionCouleur[j]}">${optionCouleur[j]}  </option> `;
+    structureOptions += `<option value = "${optionCouleur[j]}">${optionCouleur[j]} </option> `;
   }
   //selection id des couleurs
   const choixCouleur = document.querySelector("#option_couleur");
@@ -113,7 +110,7 @@ function afficherQuantite() {
   //console.log(structureNombre);
   for (let k = 1; k < 10; k++) {
     structureNombre +=
-      `<option value = "${k}">${k}  </option> `;
+      `<option value = "${k}">${k} </option> `;
   }
 
   //selection id quantité

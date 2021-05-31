@@ -2,13 +2,11 @@
 const produits = fetch("http://localhost:3000/api/teddies");
 produits.then(async (responseData) => {
   const articles = await responseData.json();
-  
+
   //boucle teddies
   for (let i = 0; i < articles.length; i++) {
     //const article = articles[i];
     displayArticle(articles[i])
-    //données ok
-    console.log(articles);
   }
 })
 

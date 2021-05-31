@@ -9,8 +9,8 @@ let structureProduitPanier = [];
 if (produitLocal === null || produitLocal.length == 0) {
     const panierVide =
         `<div class=" col-sm-6 col-lg-6 themed-grid-col">
-        <h2> Le panier est vide</h2>
-    </div>`;
+            <h2> Le panier est vide</h2>
+        </div>`;
     produitPanier.innerHTML = panierVide;
 } else {
     // si panier pas vide : afficher produits dans local storage
@@ -167,8 +167,6 @@ btnEnvoyerFormulaire.addEventListener("click", (e) => {
         email: mail.value,
     }
     
-
-
     // création du tableau products (id des oursons du panier)
     const products = [];
     for (const produitPanier of produitLocal) {
@@ -192,12 +190,9 @@ btnEnvoyerFormulaire.addEventListener("click", (e) => {
 
     //voir le resultat du serveur dans la console
     fetchData.then(async (response) => {
-        // si promesse non resolu ilfaut gerer l 'erreur
+        // si promesse non resolu il faut gerer l 'erreur
         try {
-            console.log(response);
-            console.log("contenu de la response");
             const contenu = await response.json();
-            console.log(contenu);
 
             if (response.ok) {
                 console.log(`resultat de response.ok:${response.ok}`);
