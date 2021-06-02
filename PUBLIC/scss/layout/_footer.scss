@@ -1,36 +1,36 @@
 #footer {
   display: flex;
   justify-content: space-between;
-  background-color:#F3E9F1;
+  background-color: #f3e9f1;
   position: fixed;
   bottom: 0;
   width: 100%;
   height: 50px;
 
-    & .mentions p {
+  & .mentions p {
     padding-left: 20px;
     padding-top: 10px;
     font-size: 15px;
-    font-family: 'Finger Paint', cursive;;
-     }
+    font-family: "Finger Paint", cursive;
+  }
 
-     & .mentions a {
+  & .mentions a {
     color: #9f64d0;
     font-weight: bold;
     text-decoration: none;
   }
 
-    & .contact p {
+  & .contact p {
     padding-right: 20px;
     padding-top: 10px;
     font-size: 15px;
-    font-family: 'Finger Paint', cursive;;
+    font-family: "Finger Paint", cursive;
   }
-    & .mentions a {
-      color: #9f64d0;
-      font-weight: bold;
-      text-decoration: none;
-    }
+  & .mentions a {
+    color: #9f64d0;
+    font-weight: bold;
+    text-decoration: none;
+  }
 
   & .contact a {
     color: #9f64d0;

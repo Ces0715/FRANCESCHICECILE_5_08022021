@@ -1,33 +1,31 @@
 header {
     text-align: center;
     width: 100%;
-    background-color:#F3E9F1;  
-    & p{
-        color:#9f64d0;
+    background-color: #f3e9f1;
+    & p {
+        color: #9f64d0;
         font-weight: bold;
-        font-family:'Finger Paint', cursive; 
+        font-family: "Finger Paint", cursive;
         margin-top: 20px;
     }
 }
 
-.navbar{
-    padding: 0;     
+.navbar {
+    padding: 0;
 }
 
-.navbar nav{
+.navbar nav {
     margin-right: 0;
 }
 
-.navbar-toggler{
+.navbar-toggler {
     background-color: blueviolet;
 }
 
-.logo{
+.logo {
     padding-left: 5px;
-
 }
 
-.mr-auto{
-    margin-left: 50px!important;
+.mr-auto {
+    margin-left: 50px !important;
 }
-

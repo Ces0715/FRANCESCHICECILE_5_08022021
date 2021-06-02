@@ -15,10 +15,10 @@ response.then(async (data) => {
   afficherCouleur(article);
   afficherQuantite();
 
-  //selection bouton pour l'ajout au panier
+  //selection dans le DOM du  bouton pour l'ajout au panier
   const btnPanier = document.querySelector("#btn-envoyer");
 
-  //ecouter le bouton et envoyer au panier
+  //ecouter le bouton et envoyer le panier
   btnPanier.addEventListener("click", (event) => {
     event.preventDefault();
     btnPanier.innerHTML = "cliqué";
@@ -28,7 +28,7 @@ response.then(async (data) => {
     const choixNombre = document.querySelector("#option_quantité");
     const choixForm2 = choixNombre.value;
 
-    //recuperation valeur du formulaire
+    //recuperation des valeurs du formulaire
     let optionsProduit = {
       name: article.name,
       id: article._id,
@@ -39,10 +39,10 @@ response.then(async (data) => {
     }
 
     //--------------------------- LOCAL STORAGE-------------------------------------------------
-    //declaration variable pour mettre key et value dans le local storage
+    //declaration de la variable pour mettre la key et la value dans le local storage
     let produitLocal = JSON.parse(localStorage.getItem("produit"));
 
-    //fonction fenetre pop up
+    //fonction fenetre pop up de confirmation
     const popupConfirm = () => {
       if (window.confirm(`${article.name} option :${choixForm} quantité :${choixForm2}  ajouté au panier Consultez le panier ou retour accueil`)) {
         window.location.href = "panier.html";
@@ -51,7 +51,8 @@ response.then(async (data) => {
         window.location.href = "index.html";
       }
     }
-    //FACTORISATION DU CODE :fonction ajout du produit selectionné dans le localStorage
+
+    //FACTORISATION DU CODE (fonction ajout du produit selectionné dans le localStorage)
     const ajoutProduitLocalStorage = () => {
       produitLocal.push(optionsProduit);
       // transformation en format JSON et envoi dans la key "produit" du local Storage
@@ -70,7 +71,7 @@ response.then(async (data) => {
 function afficherProduit(article) {
   //preparation structure HTML pour affichage produit
   document.getElementById("produit").innerHTML +=
-    `<div class="row mb-3">     
+  `<div class="row mb-3">     
       <div class=" col-sm-6 col-lg-6 themed-grid-col"> 
         <h2 id="name">${article.name}</h2> 
         <p id="price"><span class ="gras">Son prix : ${article.price / 100}</span> €</p> 
@@ -98,7 +99,8 @@ function afficherCouleur(article) {
 
   // boucle for pour afficher options couleur
   for (let j = 0; j < optionCouleur.length; j++) {
-    structureOptions += `<option value = "${optionCouleur[j]}">${optionCouleur[j]} </option> `;
+    structureOptions += 
+    `<option value = "${optionCouleur[j]}">${optionCouleur[j]} </option> `;
   }
   //selection id des couleurs
   const choixCouleur = document.querySelector("#option_couleur");

@@ -8,9 +8,11 @@ let structureProduitPanier = [];
 // si panier vide..afficher "panier vide"(=== null)
 if (produitLocal === null || produitLocal.length == 0) {
     const panierVide =
-        `<div class=" col-sm-6 col-lg-6 themed-grid-col">
-            <h2> Le panier est vide</h2>
-        </div>`;
+    `<div class="row mb-3">
+        <div class=" col-12"> 
+         <h2> Le panier est vide</h2>
+        </div>
+    </div>`;
     produitPanier.innerHTML = panierVide;
 } else {
     // si panier pas vide : afficher produits dans local storage
@@ -41,7 +43,7 @@ for (let m = 0; m < btn_supprimer.length; m++) {
     btn_supprimer[m].addEventListener("click", (event) => {
         event.preventDefault();
         produitLocal = produitLocal.filter(el => el !== produitLocal[m]);
-        // envoi de la variable dans le local storage
+
         // transformation en format JSON et envoi dans la key "produit" du local Storage
         localStorage.setItem("produit", JSON.stringify(produitLocal));
 
@@ -52,7 +54,7 @@ for (let m = 0; m < btn_supprimer.length; m++) {
 }
 
 //-------------------CREATION BOUTON POUR VIDER COMPLETEMENT LE PANIER--------------------------
-// code HTML du bouton
+// code HTML du bouton à afficher dans la page
 const btn_tout_supprimer =
     `<button class = "btn_tout_supprimer"> Vider le panier</button>`;
 
@@ -62,9 +64,10 @@ produitPanier.insertAdjacentHTML("beforeend", btn_tout_supprimer);
 //selection reference du bouton
 const btn_sup = document.querySelector(".btn_tout_supprimer");
 
-// ------suppression key "produit" du localstorage--------
+// ------suppression key "produit" du localstorage pour vider entierement le panier--------
 btn_sup.addEventListener('click', (e) => {
     e.preventDefault;
+    
     //methode .removeItem pour vider localstorage
     localStorage.removeItem("produit");
     alert("le panier est vidé");
@@ -139,11 +142,13 @@ const afficherFormulaire = () => {
     //injection HTML du formulaire
     formulaire.insertAdjacentHTML("afterend", structureFormulaire);
 };
+
 //appeler la fonction pour affichage du formulaire
 afficherFormulaire();
 
-// selection bouton envoyer formulaire-----------
+// selection bouton envoyer formulaire
 const btnEnvoyerFormulaire = document.querySelector("#envoyerFormulaire");
+
 //----------------addEventlistener pour afficher------------
 btnEnvoyerFormulaire.addEventListener("click", (e) => {
     e.preventDefault();
@@ -156,9 +161,7 @@ btnEnvoyerFormulaire.addEventListener("click", (e) => {
 
     //**************************************GESTION VALIDER FORMULAIRE****************************************************/
 
-    // creation objet du formulaire et produits a mettre dans un objet pour l'envoyer au serveur
-
-    // creation objet contact
+    // creation objet contact et tableau products (id des oursons du panier) pour l'envoyer au serveur
     const contact = {
         firstName: nom.value,
         lastName: prenom.value,
@@ -167,7 +170,6 @@ btnEnvoyerFormulaire.addEventListener("click", (e) => {
         email: mail.value,
     }
     
-    // création du tableau products (id des oursons du panier)
     const products = [];
     for (const produitPanier of produitLocal) {
         const productsId = produitPanier.id;
@@ -193,16 +195,11 @@ btnEnvoyerFormulaire.addEventListener("click", (e) => {
         // si promesse non resolu il faut gerer l 'erreur
         try {
             const contenu = await response.json();
-
             if (response.ok) {
                 console.log(`resultat de response.ok:${response.ok}`);
-                // RECUP ID RESPONSE
-                console.log(products);
-                console.log("contenu");
 
                 // mettre id dans LS
                 localStorage.setItem("responseId", products);
-                //aller vers page confirmation
                 window.location = "confirmation.html";
 
             } else {
