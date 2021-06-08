@@ -28,7 +28,7 @@ response.then(async (data) => {
     const choixNombre = document.querySelector("#option_quantité");
     const choixForm2 = choixNombre.value;
 
-    //recuperation des valeurs du formulaire
+    //Récuperation des valeurs du formulaire
     let optionsProduit = {
       name: article.name,
       id: article._id,
@@ -44,7 +44,7 @@ response.then(async (data) => {
 
     //fonction fenetre pop up de confirmation
     const popupConfirm = () => {
-      if (window.confirm(`${article.name} option :${choixForm} quantité :${choixForm2}  ajouté au panier Consultez le panier ou retour accueil`)) {
+      if (window.confirm(`${article.name} option :${choixForm} quantité :${choixForm2} ajouté au panier. Consultez le panier ou retour accueil`)) {
         window.location.href = "panier.html";
       }
       else {
@@ -109,7 +109,6 @@ function afficherCouleur(article) {
 
 function afficherQuantite() {
   let structureNombre = [];
-  //console.log(structureNombre);
   for (let k = 1; k < 10; k++) {
     structureNombre +=
       `<option value = "${k}">${k} </option> `;

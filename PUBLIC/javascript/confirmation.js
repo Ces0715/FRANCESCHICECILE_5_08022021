@@ -1,4 +1,4 @@
-//recuperation id et prix total de la commande du LS
+//Récuperation de l'id et du prix total de la commande du LS
 const responseId = localStorage.getItem("responseId");
 const prixT = localStorage.getItem("prixTotal");
 

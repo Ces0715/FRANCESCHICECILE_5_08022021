@@ -1,11 +1,10 @@
-/*recuperation données avec fetch*/
+/*Récuperation des données avec fetch*/
 const produits = fetch("http://localhost:3000/api/teddies");
 produits.then(async (responseData) => {
   const articles = await responseData.json();
 
-  //boucle teddies
+  //boucle pour afficher les teddies
   for (let i = 0; i < articles.length; i++) {
-    //const article = articles[i];
     displayArticle(articles[i])
   }
 })

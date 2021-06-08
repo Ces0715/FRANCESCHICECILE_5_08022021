@@ -54,12 +54,9 @@ for (let m = 0; m < btn_supprimer.length; m++) {
 }
 
 //-------------------CREATION BOUTON POUR VIDER COMPLETEMENT LE PANIER--------------------------
-// code HTML du bouton à afficher dans la page
-const btn_tout_supprimer =
-    `<button class = "btn_tout_supprimer"> Vider le panier</button>`;
 
 //insertion du bouton dans HTML du panier
-produitPanier.insertAdjacentHTML("beforeend", btn_tout_supprimer);
+produitPanier.insertAdjacentHTML("beforeend", `<button class = "btn_tout_supprimer"> Vider le panier</button>`);
 
 //selection reference du bouton
 const btn_sup = document.querySelector(".btn_tout_supprimer");
@@ -196,20 +193,16 @@ btnEnvoyerFormulaire.addEventListener("click", (e) => {
         try {
             const contenu = await response.json();
             if (response.ok) {
-                console.log(`resultat de response.ok:${response.ok}`);
 
                 // mettre id dans LS
                 localStorage.setItem("responseId", products);
                 window.location = "confirmation.html";
 
             } else {
-                console.log(`resultat du serveur:${response.status}`)
                 alert(`probleme avec le serveur: erreur ${response.status}`)
             }
 
         } catch (e) {
-            console.log(e);
-            console.log("erreur du catch");
             alert(`erreur du catch ${e}`);
         }
     })
