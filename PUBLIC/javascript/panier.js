@@ -89,8 +89,7 @@ const afficherFormulaire = () => {
     //selection element DOM pour positionner le formulaire
     const formulaire = document.querySelector("#formulaire");
     const structureFormulaire =
-        `<div id="formulaire">
-            <h2>Remplir le formulaire pour valider la commande</h2>
+    `<h2>Remplir le formulaire pour valider la commande</h2>
             <form class="border p-5">
                 <div class="form-group">
                     <div class="row">
@@ -137,7 +136,7 @@ const afficherFormulaire = () => {
         </div>`;
 
     //injection HTML du formulaire
-    formulaire.insertAdjacentHTML("afterend", structureFormulaire);
+    formulaire.innerHTML = structureFormulaire;   
 };
 
 //appeler la fonction pour affichage du formulaire
