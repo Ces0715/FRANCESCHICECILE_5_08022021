@@ -14,7 +14,7 @@ class Formulaire {
     alert(`${value}:chiffres non autorisés \n caractères compris entre 3 et 20`);
   }
   regExNomPrenomVille(value) {
-    return /^([A-Za-z]{3,20})?([-]{0,1})?([A-Za-z]{3,20})$/.test(value);
+    return /^([A-Za-z\s]{3,20})?([-]{0,1})?([A-Za-z]{3,20})$/.test(value);
   }
   regExCodePostal(value) {
     return /^[0-9]{5}$/.test(value);
@@ -90,6 +90,7 @@ class Formulaire {
 
     } else {
       alert("Veuillez bien remplir le formulaire");
+      window.location.href = "panier.html";
     }
   }
 }

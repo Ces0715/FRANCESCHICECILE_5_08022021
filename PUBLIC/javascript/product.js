@@ -87,7 +87,7 @@ function afficherProduit(article) {
         </form>  
       </div>
       <div class="col-sm-6 col-lg-6 themed-grid-col">  
-        <a href="./panier.html?id=${'_id'}">
+        <a href="./panier.html">
         <img width="300"  src = "${article.imageUrl}">
         <button id ="btn-envoyer" type="submit name="btn-envoyer">Ajouter au panier</button>  
       </div> `;

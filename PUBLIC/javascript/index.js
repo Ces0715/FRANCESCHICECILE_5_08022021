@@ -15,7 +15,7 @@ function displayArticle(article) {
     `<div class="row mb-3">     
   <div class=" col-sm-6 col-lg-6 themed-grid-col"> 
     <h2 id="name">${article.name}</h2> 
-    <p id="id">Référence : ${article._id}</p>
+    <p id="price">Prix : ${article.price/100} €</p>
     <p id="description"> ${article.description}</p> 
   </div>
   <div class="col-sm-6 col-lg-6 themed-grid-col"> 

@@ -176,6 +176,7 @@ btnEnvoyerFormulaire.addEventListener("click", (e) => {
         contact,
         products, somme,
     };
+   
 
     // envoi des données au serveur
     const fetchData = fetch("http://localhost:3000/api/teddies/order", {
