@@ -148,7 +148,7 @@ const btnEnvoyerFormulaire = document.querySelector("#envoyerFormulaire");
 //----------------addEventlistener pour afficher------------
 btnEnvoyerFormulaire.addEventListener("click", (e) => {
     e.preventDefault();
-    //window.location.href = "confirmation.html";
+   // window.location.href = "confirmation.html";
 
     // appel de l 'instance de classe Formulaire pour creer l'objet formulairevalues(recup des valeurs)
     const monFormulaire = new Formulaire();
@@ -191,7 +191,7 @@ btnEnvoyerFormulaire.addEventListener("click", (e) => {
                 console.log(data.orderId);
                 localStorage.setItem("responseOrder", data.orderId);
                 window.location = "confirmation.html";
-                localStorage.removeItem("newArticle");
+                localStorage.removeItem("produit");
 
             } else {
                 event.preventDefault();
