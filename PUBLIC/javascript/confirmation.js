@@ -1,5 +1,5 @@
 //Récuperation de l'id et du prix total de la commande du LS
-const responseId = localStorage.getItem("responseId");
+const responseOrder = localStorage.getItem("responseOrder");
 const prixT = localStorage.getItem("prixTotal");
 
 //Mise en place de la structure HTML de la page (sélection des éléments du DOM) et injection du code
@@ -11,7 +11,7 @@ const structureConfirmation =
       </div>
       <div class=" col-12">
         <h2> Récapitulatif de votre commande </h2>
-        <p> ${responseId} a bien été prise en compte</p>
+        <p> ${responseOrder} a bien été prise en compte</p>
         <p>Le montant de votre commande est de : ${prixT}€</p>
         <p class="gras">Au plaisir de vous revoir</p>
       </div>

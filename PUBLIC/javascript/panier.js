@@ -175,37 +175,42 @@ btnEnvoyerFormulaire.addEventListener("click", (e) => {
     const send = {
         contact,
         products, somme,
-    };
-   
-
-    // envoi des données au serveur
-    const fetchData = fetch("http://localhost:3000/api/teddies/order", {
-        method: "POST",
-        body: JSON.stringify(send),
-        headers: {
-            "Content-Type": "application/json",
-        },
-    });
-
-    //voir le resultat du serveur dans la console
-    fetchData.then(async (response) => {
-        // si promesse non resolu il faut gerer l 'erreur
+    }
+    
+    const post = async function (data){
         try {
-            const contenu = await response.json();
-            if (response.ok) {
-
-                // mettre id dans LS
-                localStorage.setItem("responseId", products);
+            let response = await fetch('http://localhost:3000/api/teddies/order', {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            if(response.ok) {
+                let data = await response.json();
+                console.log(data.orderId);
+                localStorage.setItem("responseOrder", data.orderId);
                 window.location = "confirmation.html";
+                localStorage.removeItem("newArticle");
 
             } else {
-                alert(`probleme avec le serveur: erreur ${response.status}`)
-            }
+                event.preventDefault();
+                console.error('Retour du serveur : ', response.status);
+                alert('Erreur rencontrée : ' + response.status);
+            } 
+        } catch (error) {
+            alert("Erreur : " + error);
+        } 
+    };
+    post(send);
+}
+);
 
-        } catch (e) {
-            alert(`erreur du catch ${e}`);
-        }
-    })
+
+   
+
+
+
 
     //*******CONTENU DU LS DANS LES CHAMPS DU FORMULAIRE*********/
     // mettre la key du ls dans une variable
@@ -230,4 +235,3 @@ btnEnvoyerFormulaire.addEventListener("click", (e) => {
     donneesLs("adresse");
     donneesLs("codepostal");
     donneesLs("ville");
-});
