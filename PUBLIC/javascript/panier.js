@@ -194,7 +194,6 @@ btnEnvoyerFormulaire.addEventListener("click", (e) => {
                 localStorage.removeItem("produit");
 
             } else {
-                event.preventDefault();
                 console.error('Retour du serveur : ', response.status);
                 alert('Erreur rencontrée : ' + response.status);
             } 

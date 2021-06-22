@@ -113,7 +113,6 @@ function afficherQuantite() {
     structureNombre +=
       `<option value = "${k}">${k} </option> `;
   }
-
   //selection id quantité
   const choixNombre = document.querySelector("#option_quantité");
   choixNombre.innerHTML = structureNombre;
