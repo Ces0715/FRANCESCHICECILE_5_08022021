@@ -49,6 +49,7 @@ response.then(async (data) => {
       }
       else {
         window.location.href = "index.html";
+        localStorage.removeItem("produit");
       }
     }
 
